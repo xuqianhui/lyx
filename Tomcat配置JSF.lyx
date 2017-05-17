@@ -111,7 +111,7 @@ reference "test.xhtml"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "../../test.xhtml"
+filename "code/test.xhtml"
 lstparams "caption={test.xhtml},label={test.xhtml}"
 
 \end_inset

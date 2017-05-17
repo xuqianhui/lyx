@@ -4,12 +4,12 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass article
+\textclass ctex-article
 \use_default_options true
 \maintain_unincluded_children false
-\language english
+\language chinese-simplified
 \language_package default
-\inputencoding auto
+\inputencoding utf8-plain
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
@@ -22,11 +22,12 @@
 \font_sf_scale 100 100
 \font_tt_scale 100 100
 \graphics default
-\default_output_format default
+\default_output_format pdf4
 \output_sync 0
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -97,9 +98,20 @@ jsf-api-2.1.jar jsf-impl-2.1.jar
 \end_layout
 
 \begin_layout Standard
+见代码示例：
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "test.xhtml"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "test.xhtml"
+filename "../../test.xhtml"
 lstparams "caption={test.xhtml},label={test.xhtml}"
 
 \end_inset
@@ -112,24 +124,43 @@ lstparams "caption={test.xhtml},label={test.xhtml}"
 \end_layout
 
 \begin_layout Standard
+首页显示见图：
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "首页显示"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-页面显示
+首页效果显示
 \end_layout
 
 \end_inset
 
 
 \begin_inset Graphics
-	filename 1.png
-	lyxscale 60
+	filename imgs/1.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "首页显示"
 
 \end_inset
 
@@ -162,20 +193,27 @@ status collapsed
 \end_layout
 
 \begin_layout Standard
+添加文件如图：
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lib目录"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
+Tomcat安装目录的lib目录
 \end_layout
 
 \end_inset
@@ -185,8 +223,16 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename 2.png
-	lyxscale 60
+	filename imgs/2.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lib目录"
 
 \end_inset
 
@@ -207,25 +253,35 @@ status collapsed
 \end_layout
 
 \begin_layout Standard
-在maven的pom文件中添加相关依赖
+在maven的pom文件中添加相关依赖如图：
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "pom文件依赖添加"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
+依赖配置
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "pom文件依赖添加"
 
 \end_inset
 
@@ -234,7 +290,8 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename 3.png
+	filename imgs/3.png
+	lyxscale 60
 
 \end_inset
 
@@ -263,6 +320,17 @@ status collapsed
 方法：将pom文件中的关于javaee的依赖配置全都替换为javaee-api并将scope设置为provided
 \end_layout
 
+\begin_layout Itemize
+如图：
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "pom配置"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float figure
 wide false
@@ -273,8 +341,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
+pom文件替换修改
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "pom配置"
 
 \end_inset
 
@@ -283,7 +358,8 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename 4.png
+	filename imgs/4.png
+	lyxscale 60
 
 \end_inset
 

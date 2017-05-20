@@ -76,6 +76,18 @@ LYX中文配置问题
 \end_layout
 
 \begin_layout Section
+版本
+\end_layout
+
+\begin_layout Standard
+lyx2.2.2 
+\end_layout
+
+\begin_layout Standard
+TeX Live 2015/Debian
+\end_layout
+
+\begin_layout Section
 问题描述
 \end_layout
 

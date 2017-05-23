@@ -1,0 +1,264 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+LYX中文输入问题（待解决）
+\end_layout
+
+\begin_layout Section
+问题表述
+\end_layout
+
+\begin_layout Standard
+半下午一直在配置lyx的中文输入，试了很多种办法都不行，问题的主要表现就是无法输入中文，文档类中没有CTeX有关的article，report，book环境，但
+是可以粘帖中文，成功编译中文，已经安装了Texlive，CTeX文件目录下的布局文件也存在相关的布局文件。
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+要使用Lyx需要安装工具本身以及Latex的一个发行版，这里选择TexLive，为了更好地支持中文我们使用XeTex排版，除了texlive包和CJK宏包以外，
+还需要安装texlive-xetex包。另外，要排版中文文章，需要CTeX宏包。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+相关软件版本
+\end_layout
+
+\begin_layout Standard
+lyx：2.2.2
+\end_layout
+
+\begin_layout Standard
+texlive：TeX Live 2016/Debian
+\end_layout
+
+\begin_layout Section
+解决思路
+\end_layout
+
+\begin_layout Subsection
+CTeX宏包问题
+\end_layout
+
+\begin_layout Subsubsection
+tlmgr安装或者手动安装并添加依赖
+\end_layout
+
+\begin_layout Standard
+TEX Live 的宏包管理器是 tlmgr。用户可以在系统命令行中执行 tlmgr gui 启动管理器的图形界面，连接上远程仓库之后,搜索 ctex
+ 安装即可。tlmgr的图形界面使用 Perl 编写,容易造成系统假死。遇到这种问题的用户,也可以直接在系统命令行执行 tlmgr install
+ ctex 来安装 CTEX 宏集 。当宏包发布新版本,并被发行版在远程仓库安装之后,在本地就可以通过宏包管理器来取得新版本。
+\end_layout
+
+\begin_layout Standard
+最好是像官方文档那样通过TexLive的包管理器进行CTex宏包的安装，但是通过系统包管理器安装TexLive的，这种情况下是没有安装TexLive包管理器tl
+mgr的，而系统包管理器没有提供CTeX的包下载，所以需要自己手动安装CTeX宏包，并手动解决相关依赖。CTeX宏包的安装其实就是按照TDS（Tex
+ Directory Structure）目录结构重新组织源代码，其实安装的步骤很简单，主要是复制除doc和test文件夹（这里是文档和测试文件，可以忽略）以外
+的文件夹和文件到TDS结构的TEXMF/tex/latex/ctex/目录下，TEXMF可以是/usr/share/texmf或/usr/local/share
+/texmf等目录，其具体配置是在/usr/share/texmf/web2c/texmf.cnf的TEXMF项的设置，最后运行texhash让TexLive识别
+新的宏包。
+\end_layout
+
+\begin_layout Standard
+然后就需要逐一解决CTeX的依赖：
+\end_layout
+
+\begin_layout Standard
+1.CJKpunct宏包。到CTAN官网下载CJKpunct.sty文件放到TEXMF/tex/latex/ctex/目录下。其实真正的安装过程没有那么简单，还需要
+生成CJKpunct.spa，但笔者怎么也生成不了，总报错，最后放弃了，因为CTeX使用起来也没有报错，所以就不管了。
+\end_layout
+
+\begin_layout Standard
+2.xeCJK宏包。安装方式跟CTeX宏包类似，也是按照TDS目录结构重新组织源代码，笔者是通过系统包管理器安装XeTex的时候已经带上了。
+\end_layout
+
+\begin_layout Standard
+3.zhwinfonts宏包。下载zhwinfonts.zip后，把里面的文件夹放在TEXMF/目录下，注意这个宏包必须和CTeX所在的版本一致，否则会出现不兼容的
+情况。
+\end_layout
+
+\begin_layout Standard
+4.字体依赖。CTeX宏包主要使用到的字体有Windows自带的四种TrueType字体：宋体、黑体、仿宋体、楷体，字体文件名为 sinsun.ttc,
+ sinhei.ttf, simfang.ttf, simkai.ttf，以及Adobe公司的四款OpenType字体：Adobe 宋体 Std、Adobe
+ 黑体 Std、Adobe 仿宋 Std、Adobe 楷体 Std，字体文件名为Adobe Song Std.otf, Adobe Heiti Std.otf,
+ Adobe Fangsong Std.otf, Adobe Kaiti Std.otf。把这些文件复制到系统的字体目录下，可以是/usr/share/fonts,
+ /usr/local/share/fonts或者~/.fonts等，也可以是这些目录里的子目录，然后在字体所在的目录下执行mkfontscale,
+ mkfontdir和fc-cache命令，让系统识别这些字体。由于Linux系统是大小写敏感的，所以有些配置文件中的字体指定必须与字体文件的文件名一致。
+\end_layout
+
+\begin_layout Standard
+CTeX宏包的字体配置文件是在TEXMF/tex/latex/ctex/fontset目录下，拿ctex-xecjk-winfonts.def文件作例子，形如"
+\backslash
+setCJK*font{*}"这些配置项就是设置字体的，注意花括号里面的是系统中字体的名字，而不是字体文件名。我们可以通过fc-list :lang=zh-cn
+命令查看中文字体的详细信息，记录条目的格式一般是：“路径: 字体名称:样式”，其中把相应的字体名称填到配置文件花括号内便可。
+\end_layout
+
+\begin_layout Subsubsection
+CTeX默认windows语言的问题（LATEX）
+\end_layout
+
+\begin_layout Standard
+ctex宏包默认使用的是windows系统的字体,而我的ubuntu下没有windows系统的字体,所以这里报了找不到宋体(SimSun)的错误。那么我们就需要
+进行字体配置,这是下一节要讲的事。 现在可以确认我们的 texlive 已经安装成功,只是还没有支持中文字符而已。配置 ctex 中文套装 ctex
+ 宏包提供了三个字体选项:nofonts、adobefonts 和 winfonts,默认使用的是 winfonts。如果在 tex 源文件中没有使用其他选项修
+改字体配置,则需要操作系统中安装有中文 Windows 操作系统自带的四种 TrueType 字体:宋体(simsun)、黑体(simhei)、仿宋体(simf
+ang)、楷体(simkai)。 如果使用 adobefonts 选项,则需要操作系统中安装有 Adobe 公司的四款 OpenType 字体:Adobe
+ 宋体、Adobe 黑体、Adobe 仿宋、Adobe 楷体。 此处我们打算使用 nofonts 选项,然后通过 CJK 中文方案将 ubuntu自带的中文字体
+设置成中文的默认字体。 使用 nofonts 选项设置字体 我们先通过命令 fc-list :lang-zh 查看 ubuntu 系统自带的中文字体fc-lis
+t :lang-zh
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+经查看：系统只有文泉驿等宽微米黑...等字体，没有宋体，黑体，楷体，仿宋，等
+\end_layout
+
+\end_inset
+
+然后自定义宏包
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+1 %mylinuxfonts.sty 
+\end_layout
+
+\begin_layout Plain Layout
+
+2 
+\backslash
+ProvidesPackage{mylinuxfonts} 
+\end_layout
+
+\begin_layout Plain Layout
+
+3 
+\backslash
+setCJKmainfont[ItalicFont={AR PL UKai CN}]{AR PL UMing CN} %设置中文默认字体 
+\end_layout
+
+\begin_layout Plain Layout
+
+4 
+\backslash
+setCJKsansfont{WenQuanYi Zen Hei} %设置中文无衬线字体为文泉驿正黑 
+\end_layout
+
+\begin_layout Plain Layout
+
+5 
+\backslash
+setCJKmonofont{WenQuanYi Zen Hei Mono} %设置中文打字机(等宽)字体为文泉驿正黑 6 
+\backslash
+endinput
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+在文档中以命令 
+\backslash
+usepackage引用即可
+\end_layout
+
+\begin_layout Subsection
+中文输入问题
+\end_layout
+
+\begin_layout Standard
+fc-list :lang-zh命令查看后无windows系统自带安装的字体，我认为问题同上，解决方法可以安装系统语言
+\end_layout
+
+\begin_layout Section
+总结说明
+\end_layout
+
+\begin_layout Standard
+我认为两个问题可能具有一定的相关性，尝试了很多种安装和配置的方法都行不通，以上为推测的问题所在和解决方法，都不是很完美，先记录下来
+\end_layout
+
+\end_body
+\end_document

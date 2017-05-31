@@ -1,0 +1,126 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}
+\usepackage{menukeys}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+The magic of LaTeX
+\end_layout
+
+\begin_layout Section
+
+关于lyx和latex：
+\end_layout
+
+\begin_layout Standard
+
+按我现在的理解，lyx使用的都是既成的模板，在没有格式要求的情况下可以方便快捷的写文章，实现自动的计数编号，排版，功能也十分强大，但是如果对文本的格式有特殊的要
+求，比如，标题字号
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+目前标题的大小在不使用latex命令的情况下，我认为无法修改
+\end_layout
+
+\end_inset
+
+，无法直接修改模板，就必须回归到latex的命令中，在lyx中嵌入latex命令也很方便，也很像一个滚雪球的过程，导言区的包逐渐学习越加越多，实现的功能也越來丰
+富。跳出lyx的模板，学会自己设置我觉得是意识上一个小突破。
+\end_layout
+
+\begin_layout Section
+
+LaTeX探索
+\end_layout
+
+\begin_layout Standard
+
+另外，latex的功能十分齐全，完全可以实现word和ppt的通用功能，甚至做的更好，在表格方面应该是不能处理多数据的计算的，因为lyx本身就是一个排版软件，如
+果像excel一样实现表格数据的函数计算，其意义就不在于排版了。不过关于表格，latex中有一个辅助工具（适用于excel的VBA插件）：Exc2LaTeX
+ ，能将Excel表格转化成对应的latex代码，在Excel中选中要导出的表格部分，单击“加载项”中的Convert table to LaTeX，在新弹出的
+对话框中就可以复制生成的LaTeX代码，这个工具可以将Excel表格转化成LaTeX语言，便于初学者使用，设置好Excel的安全等级才可以使用，能简化机械性的劳
+动，但对复杂的情况可能处理不好，关于该工具的使用还有待尝试，而且在lyx有很简单的表格插入方法，只是样式不尽如人意，想实验下通过工具导出的latex代码的样式
+\end_layout
+
+\begin_layout Standard
+
+看见过不少latex文章案例以Hello，World为例，latex也确实有点代码的味道，越了解越发现这是一个丰富的世界，还有很多惊喜可以发掘
+\end_layout
+
+\end_body
+\end_document

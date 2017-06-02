@@ -1,0 +1,241 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}
+\usepackage{menukeys}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+表格中插入脚注
+\end_layout
+
+\begin_layout Section
+背景（问题来源）
+\end_layout
+
+\begin_layout Standard
+脚注在表格中不起作用，脚注编号已打印，但省略了文本，这是一个LaTeX限制，有几种方法可以解决，但是解决方法区分浮动内表格和浮动外表格
+\end_layout
+
+\begin_layout Section
+解决方法
+\end_layout
+
+\begin_layout Subsection
+表格在浮动外
+\end_layout
+
+\begin_layout Standard
+这是一种相对好解决的情况，具体方法分为一下三种
+\end_layout
+
+\begin_layout Enumerate
+在导言区放入
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Enumerate
+
+
+\backslash
+ usepackage {footnote} 
+\end_layout
+
+\begin_layout Enumerate
+
+
+\backslash
+ makesavenoteenv {tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+通过ERT命令：在需要添加脚注的地方插入TEX代码：
+\backslash
+footnotemark，在表格后面插入TEX代码：
+\backslash
+footnotetext{脚注文本}，不过此方法只适用于有一个脚注的情况下
+\end_layout
+
+\begin_layout Enumerate
+如果有多条脚注：在表格内脚注号应该显示的地方插入TEX代码：
+\backslash
+ footnotemark，在表格后面插入TEX代码：
+\backslash
+ addtocounter {footnote} { - n}，其中n是刚刚插入表中的脚注数，最后，插入包含每个脚注文本的
+\backslash
+ stepcounter {footnote} 
+\backslash
+ footnotetext { footnote text }命令
+\end_layout
+
+\begin_layout Standard
+ps.此方法在我电脑上的实验结果略有偏差，脚注的编号有问题如图：
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "脚注编号问题"
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+脚注编号问题
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "脚注编号问题"
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename imgs/脚注标号问题.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+表格在浮动内
+\end_layout
+
+\begin_layout Standard
+这种情况相对棘手，因为表格在浮动，脚注也在浮动
+\end_layout
+
+\begin_layout Enumerate
+最简单的方法是将表格放在一个盒子中（插入-Box）这总是会给出脚注（编号为abc...），但是它不同于普通脚注的显示，而是直接显示在表格下方，盒子不允许浮动，所以表格
+本身应该是在浮动外的，这种情况会导致有脚注的表格出现在同一页正常脚注的下方，一个解决办法是在导言区添加
+\backslash
+usepackage[bottom]{footmisc}，将盒子放在浮动里，总结起来就是脚注在浮动的盒子里的表格里
+\end_layout
+
+\begin_layout Enumerate
+软件包threeparttable和ctable提供了适当的表格注释（也与普通脚注不同），threeparttable包可以用在lyx表格和lyx浮动表，通过在
+浮动表的开头插入
+\backslash
+begin{threeparttable}和在浮动表的结尾插入
+\backslash
+begin{tablenotes} 
+\backslash
+item [a] the first note ...
+ 
+\backslash
+end{tablenotes} 
+\backslash
+end{threeparttable}，更强大的ctab包只能通过直接使用ERT，lyx对其不支持
+\end_layout
+
+\begin_layout Enumerate
+如果真的需要浮动表中的普通脚注（不推荐），则必须使用上述的
+\backslash
+ footnotemark 
+\backslash
+ footnotetext方法，但将
+\backslash
+ footnotetext放在浮动位置旁边的文本中输入输出，但这十分不稳定，每次导出/查看文档时需要进行检查
+\end_layout
+
+\end_body
+\end_document

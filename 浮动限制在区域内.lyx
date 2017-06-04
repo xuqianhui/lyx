@@ -112,74 +112,25 @@ FloatBarrier命令，大概在每节之前（有个小疑问，如果章节数�
 \end_layout
 
 \begin_layout Standard
-例如：
+例如： 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/浮动限制.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Marginal
 status open
 
 \begin_layout Plain Layout
 其实第二种方法我没太懂，有待研究
-\end_layout
-
-\end_inset
-
-
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-% 
-\backslash
-makeatletter % Use 
-\backslash
-makeatletter if you put this in your main document     
-\backslash
-renewcommand
-\backslash
-section{
-\backslash
-@startsection {section}{1}{
-\backslash
-z@}%        
-\end_layout
-
-\begin_layout Plain Layout
-
- {-3.5ex 
-\backslash
-@plus -1ex 
-\backslash
-@minus -.2ex}%        
-\end_layout
-
-\begin_layout Plain Layout
-
- {2.3ex 
-\backslash
-@plus.2ex}%        
-\end_layout
-
-\begin_layout Plain Layout
-
- {
-\backslash
-FloatBarrier
-\backslash
-normalfont
-\backslash
-Large
-\backslash
-bfseries}}     
-\end_layout
-
-\begin_layout Plain Layout
-
-% 
-\backslash
-makeatother % Use 
-\backslash
-makeatother if you put this in your main document
 \end_layout
 
 \end_inset

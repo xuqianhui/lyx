@@ -100,7 +100,15 @@ JSF消息包
 \end_layout
 
 \begin_layout Enumerate
-声明消息包，这里有两种方式：全局（也是最简单的方法）：在WEB-INF目录中faces-config.xml文件，添加一下内容
+声明消息包：
+\begin_inset Newline newline
+\end_inset
+
+这里有两种方式：
+\begin_inset Newline newline
+\end_inset
+
+全局（也是最简单的方法）：在WEB-INF目录中faces-config.xml文件，添加一下内容
 \begin_inset listings
 inline false
 status open

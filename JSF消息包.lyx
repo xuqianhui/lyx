@@ -87,31 +87,20 @@ JSF消息包
 为了保持消息的一致性，便于在其他地区对应用程序进行本地化处理，jsf使用消息包使组织消息变得简单。
 \end_layout
 
-\begin_layout Section
+\begin_layout Section*
 方法步骤
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Enumerate
 将消息字符串收集到一个文件中，使用持久保存的属性格式（名字=字符串内容）
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Enumerate
 将文件和类保存在一起，可以是任意路径目录的文件名称，但是，必须使用.properties扩展名
 \end_layout
 
-\begin_layout Subsection
-声明消息包：
-\end_layout
-
-\begin_layout Standard
-这里有两种方式
-\end_layout
-
-\begin_layout Itemize
-全局（也是最简单的方法）：在WEB-INF目录中faces-config.xml文件，添加一下内容
-\end_layout
-
-\begin_layout Standard
+\begin_layout Enumerate
+声明消息包，这里有两种方式：全局（也是最简单的方法）：在WEB-INF目录中faces-config.xml文件，添加一下内容
 \begin_inset listings
 inline false
 status open
@@ -148,15 +137,7 @@ status open
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Itemize
-另一种方法是将f:loadBundle元素添加到每个需要用到消息字符串的jsf页面中，如下所示：
-\end_layout
-
-\begin_layout Standard
-<f:loadBundle basename=
+另一种方法是将f:loadBundle元素添加到每个需要用到消息字符串的jsf页面中，如下所示：<f:loadBundle basename=
 \begin_inset Quotes erd
 \end_inset
 
@@ -172,14 +153,10 @@ msgs
 \begin_inset Quotes erd
 \end_inset
 
->
+>这两种方式都是通过msgs映射变量来访问消息包中的消息
 \end_layout
 
-\begin_layout Standard
-这两种方式都是通过msgs映射变量来访问消息包中的消息
-\end_layout
-
-\begin_layout Subsection
+\begin_layout Enumerate
 声明后就可以通过值表达式（#{msgs.字符串名}）来访问字符串消息
 \end_layout
 

@@ -1,0 +1,728 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+JSF - 页面导航
+\end_layout
+
+\begin_layout Standard
+导航规则是由JSF框架提供的那些规则，用于描述当单击按钮或链接时将显示哪个视图。
+\end_layout
+
+\begin_layout Standard
+导航规则可以在名为faces-config.xml的JSF配置文件中定义。可以在受管bean中定义它们。
+\end_layout
+
+\begin_layout Standard
+导航规则可以包含可以显示结果视图的条件。JSF 2.0还提供了隐式导航，也不需要定义导航规则。
+\end_layout
+
+\begin_layout Section*
+隐性导航
+\end_layout
+
+\begin_layout Standard
+JSF 2.0提供隐式导航。在这种情况下，您只需要将视图名称放在action属性中，并且JSF将在部署的应用程序中自动搜索正确的视图页面。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/navigation_1.jpg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+自动导航在JSF页面
+\end_layout
+
+\begin_layout Standard
+设置任何JSF UI组件的视图名称in action属性。
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<h:form> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h3>Using JSF outcome</h3>  
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h:commandButton action = "page2" value = "Page2" /> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</h:form>
+\end_layout
+
+\end_inset
+
+ 在这里，当第2页点击按钮，JSF将解决视图名，第2页为page2.xhtml扩展，并找到相应的视图文件page2.xhtml在当前目录。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/navigation_2.jpg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+托管Bean中的自动导航
+\end_layout
+
+\begin_layout Standard
+在托管bean中定义返回视图名称的方法。
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@ManagedBean(name = "navigationController", eager = true) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@RequestScoped
+\end_layout
+
+\begin_layout Plain Layout
+
+public class NavigationController implements Serializable { 
+\end_layout
+
+\begin_layout Plain Layout
+
+  public String moveToPage1() { 
+\end_layout
+
+\begin_layout Plain Layout
+
+    return "page1"; 
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 使用托管bean获取任何JSF UI组件的视图名称in action属性。
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<h:form> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h3> Using Managed Bean</h3>  
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h:commandButton action = "#{navigationController.moveToPage1}" value =
+ "Page1" /glt; 
+\end_layout
+
+\begin_layout Plain Layout
+
+</h:form> 
+\end_layout
+
+\end_inset
+
+在这里，当第1页点击按钮，JSF将解决视图名，第1页作为page1.xhtml扩展，并找到相应的视图文件page1.xhtml在当前目录。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/navigation_3.jpg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+条件导航
+\end_layout
+
+\begin_layout Standard
+使用托管bean，我们可以非常轻松地控制导航。看一下托管bean中的以下代码。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/navigation_4.jpg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@ManagedBean(name = "navigationController", eager = true) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@RequestScoped
+\end_layout
+
+\begin_layout Plain Layout
+
+public class NavigationController implements Serializable { 
+\end_layout
+
+\begin_layout Plain Layout
+
+  //this managed property will read value from request parameter pageId
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  @ManagedProperty(value = "#{param.pageId}") 
+\end_layout
+
+\begin_layout Plain Layout
+
+  private String pageId;
+\end_layout
+
+\begin_layout Plain Layout
+
+  //condional navigation based on pageId
+\end_layout
+
+\begin_layout Plain Layout
+
+  //if pageId is 1 show page1.xhtml
+\end_layout
+
+\begin_layout Plain Layout
+
+  //if pageId is 2 show page2.xhtml 
+\end_layout
+
+\begin_layout Plain Layout
+
+  //else show home.xhtml 
+\end_layout
+
+\begin_layout Plain Layout
+
+  public String showPage() {
+\end_layout
+
+\begin_layout Plain Layout
+
+    if(pageId == null) {
+\end_layout
+
+\begin_layout Plain Layout
+
+      return "home";
+\end_layout
+
+\begin_layout Plain Layout
+
+    } 
+\end_layout
+
+\begin_layout Plain Layout
+
+    if(pageId.equals("1")) {
+\end_layout
+
+\begin_layout Plain Layout
+
+      return "page1"; 
+\end_layout
+
+\begin_layout Plain Layout
+
+    }else if(pageId.equals("2")) { 
+\end_layout
+
+\begin_layout Plain Layout
+
+      return "page2"; 
+\end_layout
+
+\begin_layout Plain Layout
+
+    }else { 
+\end_layout
+
+\begin_layout Plain Layout
+
+      return "home"; 
+\end_layout
+
+\begin_layout Plain Layout
+
+    } 
+\end_layout
+
+\begin_layout Plain Layout
+
+  } 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 将pageId作为JSF UI组件中的请求参数传递。
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<h:form> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h:commandLink action = "#{navigationController.showPage}" value = "Page1">
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    <f:param name = "pageId" value = "1" /> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  </h:commandLink> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h:commandLink action = "#{navigationController.showPage}" value = "Page2">
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    <f:param name = "pageId" value = "2" /> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  </h:commandLink> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h:commandLink action = "#{navigationController.showPage}" value = "Home">
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    <f:param name = "pageId" value = "3" /> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  </h:commandLink> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</h:form>
+\end_layout
+
+\end_inset
+
+ 这时，点击“Page1”按钮。
+\end_layout
+
+\begin_layout Standard
+JSF将创建一个参数pageId = 1的请求
+\end_layout
+
+\begin_layout Standard
+那么JSF会将此参数传递给navigationController的managed属性pageId
+\end_layout
+
+\begin_layout Standard
+现在调用navigationController.showPage（），在检查pageId之后，将返回view1作为page1
+\end_layout
+
+\begin_layout Standard
+JSF将解析视图名称，page1为page1.xhtml扩展名
+\end_layout
+
+\begin_layout Standard
+在当前目录中查找相应的视图文件page1.xhtml
+\end_layout
+
+\begin_layout Section*
+基于动作解决导航
+\end_layout
+
+\begin_layout Standard
+即使受管Bean不同的方法返回相同的视图名称，JSF也提供导航解析选项。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/navigation_5.jpg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+托管bean中的代码。
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public String processPage1() {
+\end_layout
+
+\begin_layout Plain Layout
+
+  return "page"; 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\begin_layout Plain Layout
+
+public String processPage2() {
+\end_layout
+
+\begin_layout Plain Layout
+
+  return "page"; 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\end_inset
+
+要解决视图，请在faces-config.xml中定义以下导航规则
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<navigation-rule> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <from-view-id>home.xhtml</from-view-id> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <navigation-case> 
+\end_layout
+
+\begin_layout Plain Layout
+
+    <from-action>#{navigationController.processPage1}</from-action> 
+\end_layout
+
+\begin_layout Plain Layout
+
+    <from-outcome>page</from-outcome> 
+\end_layout
+
+\begin_layout Plain Layout
+
+    <to-view-id>page1.jsf</to-view-id> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  </navigation-case> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <navigation-case> 
+\end_layout
+
+\begin_layout Plain Layout
+
+    <from-action>#{navigationController.processPage2}</from-action> 
+\end_layout
+
+\begin_layout Plain Layout
+
+    <from-outcome>page</from-outcome> 
+\end_layout
+
+\begin_layout Plain Layout
+
+    <to-view-id>page2.jsf</to-view-id> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  </navigation-case> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</navigation-rule> 
+\end_layout
+
+\end_inset
+
+在这里，当Page1按钮被点击时 -
+\end_layout
+
+\begin_layout Standard
+navigationController.processPage1（）被调用，它将返回视图作为页面
+\end_layout
+
+\begin_layout Standard
+JSF将解析视图名称，page1，因为视图名称是页面，而faces-config中的动作是navigationController.processPage1
+\end_layout
+
+\begin_layout Standard
+找到相应的视图文件page1.xhtml在当前目录
+\end_layout
+
+\begin_layout Section*
+前进vs重定向
+\end_layout
+
+\begin_layout Standard
+默认情况下，JSF会在导航到另一个页面时执行服务器页面，应用程序的URL不会更改。
+\end_layout
+
+\begin_layout Standard
+要启用页面重定向，请在视图名称的末尾附加faces-redirect = true。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/navigation_6.jpg
+	scale 60
+
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<h:form> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h3>Forward</h3> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h:commandButton action = "page1" value = "Page1" /> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h3>Redirect</h3> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h:commandButton action = "page1?faces-redirect = true" value = "Page1"
+ /> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</h:form>
+\end_layout
+
+\end_inset
+
+ 这里，当点击Forward下的Page1按钮时，将得到以下结果。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/navigation_7.jpg
+	scale 60
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+当点击“ 重定向 ”下的Page1按钮时，将得到以下结果。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/navigation_8.jpg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+重定向 应用示例 让我们创建一个测试JSF应用程序来测试所有上述导航示例。
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,397 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}
+\usepackage[inline]{enumitem}
+\usepackage{xcolor}
+\usepackage{tasks}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+latex特殊的列表清单
+\end_layout
+
+\begin_layout Section
+labeling环境
+\end_layout
+
+\begin_layout Standard
+有时候需要更好的对齐某些列表项，通过导入scrextend包，使用labeling环境十分方便，它需要一个包含最长标签的强制参数
+\end_layout
+
+\begin_layout Standard
+在latex导言区添加
+\backslash
+usepackage{scrextend}，插入TeX代码，代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtokomafont{labelinglabel}{
+\backslash
+sffamily} %设置标签的字体，可省略
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{labeling}{alligator} %alligator为最长的标签
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item [ant] really busy all the time 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item [chimp] likes bananas 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item [alligator] very dangerous animal, sharp teeth, long muscular tail
+ and a bit of text 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{labeling} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+输入示例：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/labeling环境示例.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+内联列表（名字自拟的）
+\end_layout
+
+\begin_layout Standard
+如果空间狭小限制，并且只有短项目描述，可以使用以下方法：
+\end_layout
+
+\begin_layout Standard
+在latex导言区添加：
+\end_layout
+
+\begin_layout Standard
+
+\backslash
+usepackage[inline]{enumitem}
+\end_layout
+
+\begin_layout Standard
+
+\backslash
+usepackage{xcolor}%用于设置颜色
+\end_layout
+
+\begin_layout Standard
+正文需要添加列表处插入TeX代码,代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{enumerate*}[label={
+\backslash
+alph*)},font={
+\backslash
+color{red!50!black}
+\backslash
+bfseries}] %设置标签号的显示方式和颜色等等
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item bananas 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item apples 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item oranges and 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item lemons.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{enumerate*}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+输出示例：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/内联列表示例.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+水平列表
+\end_layout
+
+\begin_layout Standard
+tasks包可以方便的实现水平列表，结合exsheets包可以实现类似于问卷样式的排版
+\begin_inset Marginal
+status collapsed
+
+\begin_layout Plain Layout
+exsheets包我导入测试还存在一定问题，tasks包单独使用没有问题
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+在latex导言区添加：
+\backslash
+usepackage{tasks}
+\end_layout
+
+\begin_layout Standard
+插入TeX代码，代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tasks}(4) %括号内的数字是没一行显示的列表数	
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+task mercury 		
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+task iron 		
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+task lead 		
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+task zinc 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tasks}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+输出示例：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/水平列表示例.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+思考-小结
+\end_layout
+
+\begin_layout Standard
+列表自定义的形式很多，enumitem包可以自定义设置列表的外观，紧凑程度，等等，可以自己设置很多细节问题
+\end_layout
+
+\begin_layout Standard
+关于清单，思考过通过手动输入标签数字等等也可以实现，为什么还要使用列表环境，个人认为使用列表环境主要有两方面的好处
+\begin_inset Newline newline
+\end_inset
+
+1：自动编号统一设置编号的样式格式
+\begin_inset Newline newline
+\end_inset
+
+2：自动排版页面的布局，不用手动计算调整间距
+\end_layout
+
+\begin_layout Standard
+关于内联列表和水平列表的区别：内联列表可以不连续，列表之间包含其他文字，更像是镶嵌在一段话中的几个词
+\end_layout
+
+\begin_layout Standard
+Easylist包可以自定义嵌套级别，使用方便的语法无限嵌套，定制性也非常强，研究过后再补充
+\end_layout
+
+\end_body
+\end_document

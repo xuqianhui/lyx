@@ -1,0 +1,200 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Latex文本格式
+\end_layout
+
+\begin_layout Standard
+格式化往往涉及大部分与外观有关的事情，是对细节的进一步修饰
+\end_layout
+
+\begin_layout Section
+首字下沉与上浮
+\end_layout
+
+\begin_layout Standard
+调用lettrine包（在latex导言区添加
+\backslash
+usepackage{lettrine}），它提供了一条首字母沉浮命令：
+\end_layout
+
+\begin_layout Standard
+
+\backslash
+lettrine[参数1=数值， 参数2=数值， ...]{首字母}{文本}
+\end_layout
+
+\begin_layout Standard
+该命令有多个可选子参数：
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtokomafont{labelinglabel}{
+\backslash
+sffamily} %设置标签的字体，可省略
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{labeling}{loversize} %alligator为最长的标签
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item [lines] 首字母下沉的行数,默认值是2;如果取1,首字母将上浮一行
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item [lhang] 首字母向左侧边框凸进的宽度与首字母宽度的比值，取值范围为（-1,1],默认值为0
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item [loversize] 首字母高度与其原始高度的比值，取值范围（-1,1]，默认值为0,取0.2表示增高20%，首字母增高的同时，宽度也成比例的增加
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{labeling} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+伸展空间
+\end_layout
+
+\begin_layout Standard
+使用
+\backslash
+hfill可以在一行上插入一个水平空间，命令后边的部分会被推到右边距
+\end_layout
+
+\begin_layout Standard
+例如：在TeX命令中输入以下代码
+\end_layout
+
+\begin_layout Standard
+Author Name 
+\backslash
+hfill 
+\backslash
+today
+\end_layout
+
+\begin_layout Standard
+同样，在垂直方面，
+\backslash
+vfill可以插入一个垂直拉伸的空间，
+\backslash
+vfill后面的部分会被推到页面最底端
+\end_layout
+
+\end_body
+\end_document

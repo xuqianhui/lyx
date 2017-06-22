@@ -1,0 +1,406 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{ctex}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Latex文本特效
+\end_layout
+
+\begin_layout Section
+轮廓线或阴影
+\end_layout
+
+\begin_layout Standard
+调用contour宏包，可以定义一个轮廓线命令：
+\backslash
+contour {颜色}{文本}
+\end_layout
+
+\begin_layout Standard
+它可以为文本添加所设颜色的轮廓线或阴影
+\end_layout
+
+\begin_layout Standard
+例如：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+definecolor{shadow}{gray}{0.65}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+contour{shadow}{
+\backslash
+color{yellow}
+\backslash
+fontsize{40}{50pt}
+\backslash
+selectfont
+\backslash
+kaishu 标题}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Huge
+\backslash
+bf
+\backslash
+color{white} %表示巨大宽粗字体
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+contour{black}{标题}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+输出样式：前者为黄色字添加灰色阴影，后者为白色字添加黑色轮廓线
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/轮廓.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ps：阴影效果的输出存在问题
+\end_layout
+
+\begin_layout Standard
+书中示例的阴影效果为如图样式：
+\begin_inset Graphics
+	filename imgs/阴影.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+contour包挺有意思，待研究明白后更正
+\end_layout
+
+\begin_layout Section
+任意对象旋转缩放
+\end_layout
+
+\begin_layout Standard
+要实现特效，首先要了解基本的旋转缩放如何实现，如果熟悉graphicx宏包及它提供的五条命令可以跳过2.1小节
+\end_layout
+
+\begin_layout Subsection
+五条旋转缩放命令
+\end_layout
+
+\begin_layout Standard
+命令
+\backslash
+includegraphics只能对图形进行旋转或者缩放，插图宏包graphicx提供了另外五条命令，可以对任意对象进行旋转或者缩放
+\end_layout
+
+\begin_layout Itemize
+第一条为旋转命令：
+\backslash
+rotatebox[参数1=选项，参数2=选项，...]{角度}{对象}
+\begin_inset Newline newline
+\end_inset
+
+对象可以是文本，图形，表格，公式等任意对象，角度正数表示逆时针旋转，负数表示顺时针旋转可选参数有三个，其名称及选项说明如下：
+\begin_inset Newline newline
+\end_inset
+
+origin:设置对象的旋转点，共有12个选项，origin=c表示围绕中心旋转1，默认旋转点是对象的基准点
+\begin_inset Newline newline
+\end_inset
+
+x,y:以对象的基准点为坐标原点，给出旋转点的坐标值
+\begin_inset Newline newline
+\end_inset
+
+units：设置旋转角度的单位，默认为度并逆时针旋转
+\end_layout
+
+\begin_layout Itemize
+第二条是利用旋转宏包rotating和
+\backslash
+rotatebox命令结合定义的三个能够旋转任意对象的旋转环境
+\begin_inset Newline newline
+\end_inset
+
+1.
+\backslash
+begin{sideways}对象
+\backslash
+end{sideways}%将对象逆时针旋转90度
+\begin_inset Newline newline
+\end_inset
+
+2.
+\backslash
+begin{turn}{角度}对象
+\backslash
+end{turn}
+\begin_inset Newline newline
+\end_inset
+
+3.
+\backslash
+begin{rotate}{角度}对象
+\backslash
+end{rotate}%将对象视为一个空格，无论如何旋转不改变高度和宽度，可能与上下文重叠
+\end_layout
+
+\begin_layout Itemize
+第三条是设定缩放系数的缩放命令
+\begin_inset Newline newline
+\end_inset
+
+
+\backslash
+scalebox{水平缩放系数}[垂直缩放系数]{对象}%垂直系数若没有给出默认等于水平缩放系数。若水平缩放系数为负值表示要将对象左右反转180度，垂直缩放系数
+若为负数，则表示要将对象上下反转180度。
+\end_layout
+
+\begin_layout Itemize
+第四条是直接设定缩放对象外形尺寸的缩放命令
+\begin_inset Newline newline
+\end_inset
+
+
+\backslash
+resizebox{宽度}{高度}{对象}或者
+\backslash
+resizebox*{宽度}{高度}{对象}%两者的区别在于高度的控制，前者控制相对高度，后者控制总高度，如果命令中的宽度或高度使用了感叹号代替，表示按照高度或
+宽度保持宽高比进行缩放
+\end_layout
+
+\begin_layout Itemize
+第五条是镜像命令
+\begin_inset Newline newline
+\end_inset
+
+镜像命令能够将对象左右反转180度，从而产生镜像的效果，其格式为
+\backslash
+reflectbox{对象}%其作用相当于缩放命令
+\backslash
+scalebox{-1}[1]{对象}
+\end_layout
+
+\begin_layout Subsection
+利用缩放实现的特效
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Huge
+\backslash
+bf
+\backslash
+makebox[0pt][l]{
+\backslash
+scalebox{1}[-1]{
+\backslash
+color[gray]{0.7}{Hello World}}}Hello World
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\backslash
+makebox[宽度][位置]{对象}创建一个可以制定宽度的左右盒子
+\end_layout
+
+\begin_layout Standard
+设置居中的主要原因是为了防止后面的文字全部设置为巨大粗宽字体
+\end_layout
+
+\begin_layout Standard
+输出示例：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/缩放.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+镜像效果
+\end_layout
+
+\begin_layout Standard
+使用镜像命令
+\backslash
+reflectbox{对象}，用的还是graphicx宏包
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{yellow}镜像
+\backslash
+reflectbox{
+\backslash
+color[gray]{0.6}{镜像}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+输出样式
+\begin_inset Graphics
+	filename imgs/镜像.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,240 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+latex特别文本-逐字显示
+\end_layout
+
+\begin_layout Section*
+逐字文本
+\end_layout
+
+\begin_layout Subsection
+verbatim环境
+\end_layout
+
+\begin_layout Standard
+有几种方法可以引入不被编译器解释的文本，如果使用verbatim环境，则begin和end命令之间的所有空格和行将按照给定方式输出，任何latex命令都将忽略，
+以纯文本形式处理，这也是排版程序源代码的一个选择
+\end_layout
+
+\begin_layout Standard
+例如：
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim} 
+\end_layout
+
+\begin_layout Plain Layout
+
+The verbatim environment   
+\end_layout
+
+\begin_layout Plain Layout
+
+  simply reproduces every  
+\end_layout
+
+\begin_layout Plain Layout
+
+character you input, 
+\end_layout
+
+\begin_layout Plain Layout
+
+including all  s p a c e s! 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+输出样式：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/ verbatim.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+字体的大小可以在verbatim环境开始之前调整
+\end_layout
+
+\begin_layout Subsection
+alltt 环境
+\end_layout
+
+\begin_layout Standard
+需要导入alltt包，环境效果和verbatim一样，并且允许latex部分命令，例如：
+\begin_inset Newline newline
+\end_inset
+
+
+\backslash
+emph强调字体
+\begin_inset Newline newline
+\end_inset
+
+
+\backslash
+normalfont恢复到正常字体
+\begin_inset Newline newline
+\end_inset
+
+写方程式的时候可以使用 
+\backslash
+( 和 
+\backslash
+) 而不是常规的$
+\begin_inset Newline newline
+\end_inset
+
+在alltt环境中,标准字体没有粗体，Txtfonts有加粗字体，可以使用
+\backslash
+renewcommand{
+\backslash
+ttdefault}{txtt}
+\end_layout
+
+\begin_layout Subsection
+verb命令
+\end_layout
+
+\begin_layout Standard
+如果只是需要简短的逐字显示，不需要使用整个环境，可以使用
+\backslash
+verb命令
+\end_layout
+
+\begin_layout Standard
+例如：
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verb
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textbf{Hi mate!}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

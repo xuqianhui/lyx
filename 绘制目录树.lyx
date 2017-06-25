@@ -1,0 +1,387 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+LaTeX绘制目录树
+\end_layout
+
+\begin_layout Standard
+看书写代码时经常会用到目录结构，命令行的tree命令和LaTeX的verbatim环境可以实现目录树的绘制，但是有一个包专门绘制目录结构，用起来也方便的多，就是
+dirtree包，该软件包旨在模拟Windows资源管理器显示目录和文件树的方式
+\end_layout
+
+\begin_layout Section*
+基本命令
+\end_layout
+
+\begin_layout Standard
+在latex导言区添加：
+\backslash
+usepackage{dirtree}
+\end_layout
+
+\begin_layout Standard
+使用方法是:.
+\backslash
+dirtree它接受一个参数结构：<level><space><text node>.<space>
+\end_layout
+
+\begin_layout Standard
+例如：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Wrap figure
+lines 0
+placement O
+overhang 0in
+width "60col%"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+目录树输出样式
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename imgs/目录树.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+\align left
+
+
+\backslash
+dirtree{%
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+ .1 /.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+ .2 bin.
+  
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+ .2 home.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+ .3 tex.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+ .4 latex.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+ .2 local.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+ .4 fonts.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+注：左括号后面的百分号十分重要，因为第一个符号必须是点
+\begin_inset Newline newline
+\end_inset
+
+关于%的详细作用，请参照下一篇文章
+\end_layout
+
+\begin_layout Section*
+细节扩充
+\end_layout
+
+\begin_layout Standard
+
+\backslash
+DTstyle：定义节点文本的命令，当你在LATEX中它的默认值是
+\backslash
+ttfamily。在TeX中默认值是
+\backslash
+tt，可以重定义这个命令
+\end_layout
+
+\begin_layout Standard
+
+\backslash
+DTcomment：允许将文本放在某一级右侧，用法是：
+\backslash
+DTcomment{comment text}
+\end_layout
+
+\begin_layout Standard
+
+\backslash
+DTstylecomment：右侧文本的风格用这个命令用来定义，在LATEX下默认值是
+\backslash
+rmfamilly ，TeX中默认值是
+\backslash
+rm
+\end_layout
+
+\begin_layout Standard
+一个综合上述三个命令的例子：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand*
+\backslash
+DTstylecomment{
+\backslash
+rmfamily
+\backslash
+color{green}
+\backslash
+textsc} 
+\backslash
+renewcommand*
+\backslash
+DTstyle{
+\backslash
+ttfamily
+\backslash
+textcolor{red}} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+dirtree{%
+\end_layout
+
+\begin_layout Plain Layout
+
+.1 /.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+.2 bin.
+\end_layout
+
+\begin_layout Plain Layout
+
+.2 home.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+.3 jeancome.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+.4 texmf.
+\end_layout
+
+\begin_layout Plain Layout
+
+.5 tex.
+\end_layout
+
+\begin_layout Plain Layout
+
+.3 jeancomeson
+\backslash
+DTcomment{Guillaume}.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+.3 jeancomedaughter
+\backslash
+DTcomment{Mathilde}.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+.2 usr.
+\end_layout
+
+\begin_layout Plain Layout
+
+.3 bin.
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+输出样式：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/目录树风格.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

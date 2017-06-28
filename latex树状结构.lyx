@@ -1,0 +1,608 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{multicol}
+\usepackage[style]{fncychap}
+\usepackage{forest}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Latex树状结构-Forest
+\end_layout
+
+\begin_layout Section
+自上而下的基本树
+\end_layout
+
+\begin_layout Standard
+通过在forest环境（
+\backslash
+usepackage{forest}）中画树状结构，语法由很多节点编码组成，每个节点都由方括号括起来节点的子级包含在括号内，括号周围的空格都会被忽略，可以按照自
+己希望的方式格式化代码。
+\end_layout
+
+\begin_layout Subsection
+二叉树
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50line%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{forest}
+\end_layout
+
+\begin_layout Plain Layout
+
+  [VP
+\end_layout
+
+\begin_layout Plain Layout
+
+    [DP] 
+\end_layout
+
+\begin_layout Plain Layout
+
+    [V’ 
+\end_layout
+
+\begin_layout Plain Layout
+
+      [V] 
+\end_layout
+
+\begin_layout Plain Layout
+
+      [DP] 
+\end_layout
+
+\begin_layout Plain Layout
+
+    ] 
+\end_layout
+
+\begin_layout Plain Layout
+
+  ] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{forest}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "40line%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename imgs/树状结构1.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+父节点位置
+\end_layout
+
+\begin_layout Standard
+除了二叉树以外，还可以画其他树状结构，默认情况下，子节点垂直居中分布在父节点两侧，也就是说父节点垂直居中在第一个孩子和最后一个孩子的中间位置
+\end_layout
+
+\begin_layout Standard
+例如：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50line%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{forest} 
+\end_layout
+
+\begin_layout Plain Layout
+
+  [VP 
+\end_layout
+
+\begin_layout Plain Layout
+
+    [DP[John]] 
+\end_layout
+
+\begin_layout Plain Layout
+
+    [V’ 
+\end_layout
+
+\begin_layout Plain Layout
+
+      [V[sent]] 
+\end_layout
+
+\begin_layout Plain Layout
+
+      [DP[Mary]] 
+\end_layout
+
+\begin_layout Plain Layout
+
+      [DP[D[a]][NP[letter]]] 
+\end_layout
+
+\begin_layout Plain Layout
+
+    ] 
+\end_layout
+
+\begin_layout Plain Layout
+
+  ] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{forest}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "40line%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename imgs/树状结构2.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+内部字符和格式
+\end_layout
+
+\begin_layout Standard
+如果节点内容需要方括号等字符，用大括号括起来
+\end_layout
+
+\begin_layout Standard
+节点内容中可以使用
+\backslash
+textbf等格式命令
+\end_layout
+
+\begin_layout Section
+GP1风格
+\end_layout
+
+\begin_layout Standard
+GP1风格应用很简单，通过在树的第一个支点之前写名字，这一部分还没实验成功，它可以输出左右结构不相连的结构，（把不同树的命令分开分别放在
+\backslash
+begin{forest}和
+\backslash
+end{forest}之间也可以实现）
+\end_layout
+
+\begin_layout Section
+其他简单样式
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50line%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{forest} 
+\end_layout
+
+\begin_layout Plain Layout
+
+[VP,circle,draw 
+\end_layout
+
+\begin_layout Plain Layout
+
+  [DP][V’[V][DP]] 
+\end_layout
+
+\begin_layout Plain Layout
+
+] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{forest}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "40line%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename imgs/树状结构3.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "81line%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+forestset{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  default preamble={ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    font=
+\backslash
+Huge, 
+\end_layout
+
+\begin_layout Plain Layout
+
+    for tree={circle,draw} 
+\end_layout
+
+\begin_layout Plain Layout
+
+  } 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{forest} [A[B][C]] 
+\backslash
+end{forest} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{forest} red [D[E][F]] 
+\backslash
+end{forest} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{forest} for tree={dotted} G[H][I]] 
+\backslash
+end{forest}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "30line%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename imgs/树状结构4.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

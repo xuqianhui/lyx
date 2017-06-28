@@ -604,5 +604,26 @@ status open
 
 \end_layout
 
+\begin_layout Section
+题外话-图片程序列表并列显示
+\end_layout
+
+\begin_layout Standard
+在编辑过程中，发现图片和程序列表无法并列显示上下显示空余右边太多，请教了宿老师，老师通过迷你盒子简单的实现了图片和程序列表并列显示（将迷你盒子看作是字符），盒子
+内可以插入文件，代码，图片等十分灵活
+\end_layout
+
+\begin_layout Enumerate
+插入两个迷你盒子，通过首选项设置好每一个盒子的行宽所占百分比，加起来不超过100,最好留有空隙，为了美观
+\end_layout
+
+\begin_layout Enumerate
+在盒子中插入列表或者图片，所占百分比为元素占盒子的百分比
+\end_layout
+
+\begin_layout Enumerate
+为了显示漂亮，将盒子的外框设置成居中形式
+\end_layout
+
 \end_body
 \end_document

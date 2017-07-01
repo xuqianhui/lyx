@@ -23,7 +23,6 @@
 \usepackage{multicol}
 \usepackage[style]{fncychap}
 \usepackage{forest}
-\usepackage[linguistics]{forest} 
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -166,24 +165,80 @@ calizationContext and ConfigureListener）缺少很多有价值的设置，不�
 用bean属性表示表单数据
 \end_layout
 
+\begin_layout Standard
+用bean的属性表示输入元素，当显示窗体时, 将调用 getter（getName），如果 结果为非空, 即初始值为文本。提交表单时, 文本值将传递给sette
+r（setName）方法
+\end_layout
+
+\begin_layout Standard
+注意文本框引用的是bean的属性，而按钮指的是确切的方法的名称，对于缺少的数据使用单独的错误页不是一个好方法。 相反, 应该重新显示输入窗体,
+ 并使用错误消息标记丢失的数据。
+\end_layout
+
 \begin_layout Section
 应用业务逻辑
+\end_layout
+
+\begin_layout Standard
+结果页面通常显示的不仅仅是用户输入的数据， 它通常还显示从用户数据派生的数据 。例如： 用户输入银行帐号并显示帐户余额。
+\end_layout
+
+\begin_layout Standard
+使用独立的方法查找派生数据：不要直接在操作控制器方法中计算派生数据, 而是使用单独的方法
+\end_layout
+
+\begin_layout Standard
+简单输入简单输出：不返回找到数据的Hibernate对象或任何细节，返回一个java对象来表示结果
+\end_layout
+
+\begin_layout Standard
+编写接口：制作一个像CustomerLookupService一样的接口并使用这种类型，防止依赖某种具体类型
+\end_layout
+
+\begin_layout Standard
+有时使用依赖注入：更改了接口的具体实现时候，主类什么都没有改变，托管 bean将变量声明为接口类型, 而不是具体类型。这意味着更改具体类型的实现时,
+ 不必更改 操作控制器方法或输出页中的任何内容，使用依赖注入从 bean 中设置具体类型, 从而更改具体类型 意味着更改单独的 bean, 但不更改主管理
+ bean 中的任何内容。 
 \end_layout
 
 \begin_layout Section
 页面模板
 \end_layout
 
+\begin_layout Standard
+如果在多个位置使用相同的内容，将内容放在单独的文件，并把它用ui:include包含起来
+\end_layout
+
+\begin_layout Standard
+如果有多个页面具有相似的布局，可以制作模板文件
+\end_layout
+
 \begin_layout Section
 验证输入
 \end_layout
 
-\begin_layout Section
-Ajaxifying
+\begin_layout Standard
+在输入表单中放置标记以检查数据是否格式正确，如果不正确则显示错误信息。
 \end_layout
 
-\begin_layout Section
-PrimeFaces
+\begin_layout Standard
+h: inputText 中的属性：
+\end_layout
+
+\begin_layout Standard
+requiredMessage:对于完全丢失数据
+\end_layout
+
+\begin_layout Standard
+converterMessage:对于错误类型的数据 ·
+\end_layout
+
+\begin_layout Standard
+validatorMessage: 对于从 f: validateblah 测试失败的数据
+\end_layout
+
+\begin_layout Standard
+<h:message for="id-of-textfield"/>：用于输出错误消息
 \end_layout
 
 \end_body

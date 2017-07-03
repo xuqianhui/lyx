@@ -245,19 +245,19 @@ JSF bean的三个部分
 ，想从 arraylist 切换到 linkedlist不需要更改主类中的代码
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 使用独立的方法查找派生数据：不要直接在操作控制器方法中计算派生数据, 而是使用单独的方法 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 简单输入简单输出：不返回找到数据的Hibernate对象或任何细节，返回一个java对象来表示结果 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 编写接口：制作一个像CustomerLookupService一样的接口并使用这种类型，防止依赖某种具体类型制作单独的方法 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 使用依赖项注入：在上面的示例中, 仍有一行代码在切换实现时必须更改。在主类中注入具体的类型, 这样在切换接口的具体实现时不会发生任何变化
 \end_layout
 

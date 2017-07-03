@@ -188,7 +188,7 @@ bean属性-getter/setter方法的快捷键
 \end_layout
 
 \begin_layout Standard
-可以执行任意的“副作用”，如果类的用户直接访问了这些字段, 则 他们各自负责执行副作用
+可以执行任意的“副作用”，如果类的用户直接访问了这些字段, 则他们各自负责执行副作用
 \end_layout
 
 \begin_layout Subsection
@@ -211,7 +211,15 @@ JSF中，bean存储web页面的状态，JSF自动管理一些bean：
 控制它的生命周期
 \end_layout
 
-\begin_layout Section
+\begin_layout Standard
+出现的问题：调用多次managed beans的getter方法：例如，显示表单的时候至少调用一次，显示结果时再一次调用
+\end_layout
+
+\begin_layout Standard
+方法：getter 方法仅返回现有值，在动作控制器方法里储存实例变量的数据
+\end_layout
+
+\begin_layout Subsection
 JSF bean的三个部分
 \end_layout
 
@@ -220,11 +228,12 @@ JSF bean的三个部分
 \end_layout
 
 \begin_layout Standard
-响应控制器的方法
+响应控制器的方法（action）：jsf 自动调用 
 \end_layout
 
 \begin_layout Standard
-从输入引申的属性
+从输入引申的属性：根据业务逻辑的结果，在动作控制器方法里实现，需要一个 getter 方法, 以便可以在结果页中输出值 ，但不要求有 setter
+ 方法
 \end_layout
 
 \begin_layout Section
@@ -232,23 +241,24 @@ JSF bean的三个部分
 \end_layout
 
 \begin_layout Standard
-如何防止数据的改变引起其他部分代码的改变：
+如何防止数据的改变引起其他部分代码的改变：类似List<String> names = new ArrayList<>();使用list而不是arraylist
+，想从 arraylist 切换到 linkedlist不需要更改主类中的代码
 \end_layout
 
 \begin_layout Standard
-制作单独的方法 
+使用独立的方法查找派生数据：不要直接在操作控制器方法中计算派生数据, 而是使用单独的方法 
 \end_layout
 
 \begin_layout Standard
-传递和返回简单类型 
+简单输入简单输出：不返回找到数据的Hibernate对象或任何细节，返回一个java对象来表示结果 
 \end_layout
 
 \begin_layout Standard
-编写接口
+编写接口：制作一个像CustomerLookupService一样的接口并使用这种类型，防止依赖某种具体类型制作单独的方法 
 \end_layout
 
 \begin_layout Standard
-使用依赖项注入
+使用依赖项注入：在上面的示例中, 仍有一行代码在切换实现时必须更改。在主类中注入具体的类型, 这样在切换接口的具体实现时不会发生任何变化
 \end_layout
 
 \end_body

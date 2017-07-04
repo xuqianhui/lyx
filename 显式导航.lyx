@@ -1,0 +1,249 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{multicol}
+\usepackage[style]{fncychap}
+\usepackage{forest}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+显式页面导航
+\end_layout
+
+\begin_layout Section
+导航规则
+\end_layout
+
+\begin_layout Standard
+在bean中使用默认映射机制返回值：返回的字符串由控制器对应结果页的名字
+\end_layout
+
+\begin_layout Standard
+也可以在facesconfig.xml中设置导航规则来说明每个返回值对应哪一页
+\end_layout
+
+\begin_layout Itemize
+文件位置：WEB-INF/faces-config.xml
+\end_layout
+
+\begin_layout Itemize
+目的：将返回结果映射到页面
+\begin_inset Newline newline
+\end_inset
+
+将 bean 名称映射到 bean 类
+\begin_inset Newline newline
+\end_inset
+
+注入 bean 属性
+\begin_inset Newline newline
+\end_inset
+
+定义属性文件等等
+\end_layout
+
+\begin_layout Itemize
+一般格式：
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<?xml version="1.0"?> 
+\end_layout
+
+\begin_layout Plain Layout
+
+<faces-config … version="2.2">
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+\end_layout
+
+\begin_layout Plain Layout
+
+</faces-config>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Navigation rules
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<navigation-rule> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <from-view-id>/some-start-page.xhtml</from-view-id> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <navigation-case>
+\end_layout
+
+\begin_layout Plain Layout
+
+    <from-outcome>return-condition-1</from-outcome> 
+\end_layout
+
+\begin_layout Plain Layout
+
+    <to-view-id>/result-page-1.xhtml</to-view-id> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  </navigation-case> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  More navigation-case entries for other conditions
+\end_layout
+
+\begin_layout Plain Layout
+
+</navigation-rule>
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+在一个页面上单击按钮，动作控制器返回一个值，跳转到页面1或者其他页面，每个表单有一个导航规则，包含一个from-view-id，但是可以有多个navigatio
+n-cases
+\end_layout
+
+\begin_layout Section
+显式导航的优缺点
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Section
+高级属性
+\end_layout
+
+\begin_layout Subsection
+通配符
+\end_layout
+
+\begin_layout Subsection
+条件导航
+\end_layout
+
+\begin_layout Subsection
+动态计算
+\end_layout
+
+\begin_layout Section
+静态导航
+\end_layout
+
+\end_body
+\end_document

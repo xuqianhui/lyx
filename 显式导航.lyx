@@ -209,16 +209,40 @@ status open
 
 \end_inset
 
-
-\begin_inset Newline newline
-\end_inset
-
 在一个页面上单击按钮，动作控制器返回一个值，跳转到页面1或者其他页面，每个表单有一个导航规则，包含一个from-view-id，但是可以有多个navigatio
 n-cases
 \end_layout
 
 \begin_layout Section
 显式导航的优缺点
+\end_layout
+
+\begin_layout Subsection
+默认的映射机制（返回值=页面）：
+\end_layout
+
+\begin_layout Standard
+可以简单快速的开始，制作测试用例等
+\end_layout
+
+\begin_layout Standard
+如果是一个结果对应一个一个页面，就显的冗余
+\end_layout
+
+\begin_layout Subsection
+在faces-config.xml中显式映射
+\end_layout
+
+\begin_layout Standard
+可以更好的理解程序，在一个地方放置导航规则，不需要查看许多java文件
+\end_layout
+
+\begin_layout Standard
+有很多Eclipse 和 NetBeans的工具，可以自动绘制页面流
+\end_layout
+
+\begin_layout Standard
+更灵活：可将条件重新映射到其他页 ，可以使用通配符启动页面 ，可以使用通配符输出结果
 \end_layout
 
 \begin_layout Standard
@@ -233,16 +257,134 @@ n-cases
 通配符
 \end_layout
 
+\begin_layout Standard
+from-view-id中的*表示匹配任何的起始页（未指定from-view-id元素，则该规则适用于所有页面），多个窗体可以共享一些结果页
+\end_layout
+
+\begin_layout Standard
+省略from-outcome：匹配所有返回情况，可以将多个返回值指向同一结果页
+\end_layout
+
+\begin_layout Standard
+除了null，总是重新显示窗体
+\end_layout
+
 \begin_layout Subsection
 条件导航
+\end_layout
+
+\begin_layout Standard
+在程序应用时可以指定<if> 标记
+\end_layout
+
+\begin_layout Standard
+例如：
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<navigation-case> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <from-outcome>success</from-outcome> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <if>#{user.returnVisitor}</if> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <to-view-id>/welcome-back.xhtml</to-view-id> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</navigation-case> 
+\end_layout
+
+\begin_layout Plain Layout
+
+<navigation-case> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <from-outcome>success</from-outcome> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <if>#{!user.returnVisitor}</if> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <to-view-id>/welcome-aboard.xhtml</to-view-id> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</navigation-case>
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 动态计算
 \end_layout
 
-\begin_layout Section
-静态导航
+\begin_layout Standard
+可以直接在 facesconfig 中指定目标页，不是间接的通过操作控制器方法的返回值
+\end_layout
+
+\begin_layout Standard
+例如：
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<navigation-rule> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <from-view-id>/exam-question.xhtml</from-view-id> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <navigation-case> 
+\end_layout
+
+\begin_layout Plain Layout
+
+    <to-view-id>#{exam.nextQuestionPage}</to-view-id> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  </navigation-case> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</navigation-rule>
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

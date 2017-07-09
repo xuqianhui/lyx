@@ -1,0 +1,289 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{multicol}
+\usepackage[style]{fncychap}
+\usepackage{forest}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+表达式语法
+\end_layout
+
+\begin_layout Section
+表达式语言的优点（概述）
+\end_layout
+
+\begin_layout Enumerate
+简写bean属性
+\begin_inset Newline newline
+\end_inset
+
+若要引用名为company的managed bean下的getCompanyName方法的结果，可以使用#{company.companyName}
+\begin_inset Newline newline
+\end_inset
+
+若要引用名为company的managed bean下的president属性的firstName属性，使用#{company.president.firstNam
+e}
+\end_layout
+
+\begin_layout Enumerate
+简单访问集合元素
+\begin_inset Newline newline
+\end_inset
+
+如果要访问array, List, or Map中的某个元素，使用#{someBean.someProperty[indexOrKey]}
+\begin_inset Newline newline
+\end_inset
+
+E.g.： #{person.friends[2]}
+\end_layout
+
+\begin_layout Enumerate
+小型但有用的简单运算符
+\begin_inset Newline newline
+\end_inset
+
+若要在 el 表达式中操作对象, 可以使用多个算术、关系、逻辑或空测试运算符中的任何一个
+\end_layout
+
+\begin_layout Enumerate
+条件输出
+\begin_inset Newline newline
+\end_inset
+
+可以在输出选项间做选择:
+\begin_inset Newline newline
+\end_inset
+
+#{test ? option1 : option2}
+\begin_inset Newline newline
+\end_inset
+
+<h:someElement … rendered="#{test}"/> 
+\begin_inset Newline newline
+\end_inset
+
+<ui:fragment rendered="…">…</ui:fragment>
+\end_layout
+
+\begin_layout Enumerate
+预定义变量
+\end_layout
+
+\begin_layout Enumerate
+传递参数
+\begin_inset Newline newline
+\end_inset
+
+el 的2.1 版允许将任意参数传递给方法。仅适用于支持 el 2.1 的 java ee 6 或其他服务器。不是 jsf 2 本身的一部分
+\begin_inset Newline newline
+\end_inset
+
+例如允许工作在Tomcat 7而不是Tomcat 6,即使JSF 2都可以运行工作
+\end_layout
+
+\begin_layout Enumerate
+空值而不是错误信息
+\begin_inset Newline newline
+\end_inset
+
+大多数情况下，缺失的值或者NullPointerExceptions，会导致空字符串, 而不会引发异常
+\end_layout
+
+\begin_layout Section
+输出简单的bean属性
+\end_layout
+
+\begin_layout Standard
+首先找到变量名字：在所有定义的范围中搜索 "varname", 从最特定的到最一般的 (请求、会话、应用程序, 按照标准 web 应用程序范围的顺序)。然后查看
+托管 bean 定义并实例化。
+\end_layout
+
+\begin_layout Standard
+然后调用getPropertyName并输出结果(布尔型用is)
+\end_layout
+
+\begin_layout Section
+访问嵌套的bean属性
+\end_layout
+
+\begin_layout Standard
+格式：#{var.prop1.prop2.prop3}
+\end_layout
+
+\begin_layout Standard
+首先找到变量，和以前一样。查看现有范围 (最窄到最宽)，如果未找到, 查看托管 bean 定义并实例化
+\end_layout
+
+\begin_layout Standard
+在bean中调用getProp1，在getProp1的结果中调用getProp2...以此类推，最后输出结果
+\end_layout
+
+\begin_layout Section
+访问集合
+\end_layout
+
+\begin_layout Standard
+点和数组符号等价：访问数组一般格式：#{name.property}（只有“property”是合法的java变量名的时候，表达式才是合法的）或者#{name["
+property"]}
+\end_layout
+
+\begin_layout Subsection
+使用括号的原因：
+\end_layout
+
+\begin_layout Itemize
+访问arrays, lists和其他集合
+\end_layout
+
+\begin_layout Itemize
+在请求时计算属性
+\end_layout
+
+\begin_layout Itemize
+可以使用不合法的java变量名。例如：#{foo["bar-baz"]} 和 #{foo["bar.baz"]}
+\end_layout
+
+\begin_layout Subsection
+[ ] 形式：
+\end_layout
+
+\begin_layout Standard
+theArray[index] (getting and setting)
+\end_layout
+
+\begin_layout Standard
+theList.get(index) or theList.set(index, submittedVal)
+\end_layout
+
+\begin_layout Standard
+theMap.get(key) or theMap.put(key, submittedVal)
+\end_layout
+
+\begin_layout Standard
+对于Maps来说可以使用以下等价形式（不能用于list）：
+\end_layout
+
+\begin_layout Standard
+#{stateCapitals["maryland"]}
+\end_layout
+
+\begin_layout Standard
+#{stateCapitals.maryland}
+\end_layout
+
+\begin_layout Section
+条件输出
+\end_layout
+
+\begin_layout Subsection
+#{ condition ? val1 : val2 }
+\end_layout
+
+\begin_layout Standard
+EL直接支持有条件限制的三元运算符(test ? thenResult : elseResult),但是它们不能包含html标签，不允许省略else部分
+\end_layout
+
+\begin_layout Standard
+这种情况比较简单，但是如果想要输出html，可以在h:outputText中使用三元运算符，并且设置escape="false"，不进行转义
+\end_layout
+
+\begin_layout Subsection
+h:outputText and “rendered”
+\end_layout
+
+\begin_layout Standard
+几乎所有的h：标签元素可以使用rendered
+\end_layout
+
+\begin_layout Standard
+将布尔类型的值放在rendered属性中，将条件下的内容放在value属性中，value值可以使EL表达式或者文本字符串，但是文本字符串不能包含html标签
+\end_layout
+
+\end_body
+\end_document

@@ -458,11 +458,15 @@ Getter方法影响初始选项：
 \end_layout
 
 \begin_layout Standard
-如果用户选择的 getter 方法与其中一个选项匹配, 则是最初显示的值
+如果用户选择的 getter 方法返回值与其中一个选项匹配, 则是最初显示的值
 \end_layout
 
 \begin_layout Standard
 如果 getter 返回 null 或无匹配值：对于Menus来说,显示最高值;其他的不做选择，也就是说，对于列表框和单选按钮, 总是有匹配的选项
+\end_layout
+
+\begin_layout Standard
+Maps和集合类的对象：getter 应匹配返回值, 而不是显示值
 \end_layout
 
 \begin_layout Standard

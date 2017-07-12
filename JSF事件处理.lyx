@@ -196,5 +196,25 @@ public void blah(ValueChangeEvent e) { …}
 阶段事件
 \end_layout
 
+\begin_layout Standard
+在每个生命周期之前和之后触发的事件，称为阶段事件。可以使用如下标签为单个页面指定阶段监听器（放在页面中的任何位置）
+\end_layout
+
+\begin_layout Standard
+<f:phaseListener type= 
+\begin_inset Quotes erd
+\end_inset
+
+com.corejsf.PhaseTracker
+\begin_inset Quotes erd
+\end_inset
+
+/>
+\end_layout
+
+\begin_layout Standard
+还可以在faces中指定全局阶段监听器，可以指定任意多个，按照在配置文件中的指定顺序调用监听器
+\end_layout
+
 \end_body
 \end_document

@@ -1,0 +1,444 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{multicol}
+\usepackage[style]{fncychap}
+\usepackage{forest}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+JSF系统事件
+\end_layout
+
+\begin_layout Standard
+系统事件根据源类型可以分为UIComponent、UIViewRoot、Application、等等，介绍几个常用的以及相关例子
+\end_layout
+
+\begin_layout Section
+处理方式
+\end_layout
+
+\begin_layout Subsection
+SystemEventListener：
+\end_layout
+
+\begin_layout Standard
+实现SystemEventListener接口并在faces-config.xml中注册system-event-listener类
+\end_layout
+
+\begin_layout Subsubsection*
+实现SystemEventListener接口
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public class CustomSystemEventListener implements SystemEventListener {
+\end_layout
+
+\begin_layout Plain Layout
+
+  @Override    
+\end_layout
+
+\begin_layout Plain Layout
+
+  public void processEvent(SystemEvent event) throws
+\end_layout
+
+\begin_layout Plain Layout
+
+    AbortProcessingException {    
+\end_layout
+
+\begin_layout Plain Layout
+
+    if(event instanceof PostConstructApplicationEvent) { 
+\end_layout
+
+\begin_layout Plain Layout
+
+      System.out.println("Application Started.
+             
+\end_layout
+
+\begin_layout Plain Layout
+
+        PostConstructApplicationEvent occurred!");   
+\end_layout
+
+\begin_layout Plain Layout
+
+    }        
+\end_layout
+
+\begin_layout Plain Layout
+
+  } 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+在faces-config.xml中注册系统事件的自定义系统事件侦听器。
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<system-event-listener>  
+\end_layout
+
+\begin_layout Plain Layout
+
+  <system-event-listener-class>       
+\end_layout
+
+\begin_layout Plain Layout
+
+    com.tutorialspoint.test.CustomSystemEventListener   
+\end_layout
+
+\begin_layout Plain Layout
+
+  </system-event-listener-class>       
+\end_layout
+
+\begin_layout Plain Layout
+
+  <system-event-class>       
+\end_layout
+
+\begin_layout Plain Layout
+
+    javax.faces.event.PostConstructApplicationEvent  
+\end_layout
+
+\begin_layout Plain Layout
+
+  </system-event-class>    		
+\end_layout
+
+\begin_layout Plain Layout
+
+</system-event-listener> 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Method Binding：
+\end_layout
+
+\begin_layout Standard
+在f：event的侦听器属性中传递managed bean方法的名称。
+\end_layout
+
+\begin_layout Subsubsection*
+定义一个方法
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public void handleEvent(ComponentSystemEvent event) {    
+\end_layout
+
+\begin_layout Plain Layout
+
+  data = "Hello World";
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+使用上述方法
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<f:event listener = "#{user.handleEvent}" type = "preRenderView" />
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+系统事件
+\end_layout
+
+\begin_layout Subsection
+Application
+\end_layout
+
+\begin_layout Standard
+PreRenderViewEvent
+\end_layout
+
+\begin_layout Standard
+在JSF页面显示之前触发。可用于对用户进行身份验证，并提供对JSF View的受限访问，example：
+\end_layout
+
+\begin_layout Subsection*
+Managed Bean
+\end_layout
+
+\begin_layout Standard
+创建一个普通的bean，包含方法public void method-name（ComponentSystemEvent event）
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public void isAdmin(ComponentSystemEvent event){
+\end_layout
+
+\begin_layout Plain Layout
+
+  FacesContext fc = FacesContext.getCurrentInstance();
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (!"admin".equals(fc.getExternalContext().getSessionMap().get("role"))){
+\end_layout
+
+\begin_layout Plain Layout
+
+    ConfigurableNavigationHandler nav 		   
+\end_layout
+
+\begin_layout Plain Layout
+
+      = (ConfigurableNavigationHandler) 		
+\end_layout
+
+\begin_layout Plain Layout
+
+        fc.getApplication().getNavigationHandler();
+\end_layout
+
+\begin_layout Plain Layout
+
+    nav.performNavigation("access-denied"); 
+\end_layout
+
+\begin_layout Plain Layout
+
+  } 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+JSF Page
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<f:event listener="#{user.isAdmin}" type="preRenderView" /> 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+UIComponent
+\end_layout
+
+\begin_layout Standard
+UIComponent是JavaServerFaces所有的用户界面组件的基类，与特定请求和响应关联的 UIComponent 实例集被组织到一个
+ UIViewRoot 下的组件树中, 它表示请求或响应的整个内容，也有一组预定义的系统事件可以监听。
+\end_layout
+
+\begin_layout Standard
+以下事件由UIComponent触发:
+\end_layout
+
+\begin_layout Standard
+PostAddToViewEvent: 组件已添加到视图根目录之后。
+\end_layout
+
+\begin_layout Standard
+PreRemoveFromViewEvent：组件即将被删除之前。 
+\end_layout
+
+\begin_layout Standard
+PostRestoreStateEvent：组件状态恢复后。
+\end_layout
+
+\begin_layout Standard
+PreValidateEvent：组件验证之前。
+\end_layout
+
+\begin_layout Standard
+PostValidateEvent：组件验证后。
+\end_layout
+
+\begin_layout Subsection
+UIViewRoot
+\end_layout
+
+\begin_layout Standard
+UIViewRoot已经发布了几种主要类型的事件：
+\end_layout
+
+\begin_layout Standard
+PostConstructApplicationEvent
+\end_layout
+
+\begin_layout Standard
+应用程序启动时触发。可以在应用程序启动后用于执行初始化任务。
+\end_layout
+
+\begin_layout Standard
+PreDestroyApplicationEvent
+\end_layout
+
+\begin_layout Standard
+当应用程序即将关闭时触发。可以在应用程序即将关闭之前执行清理任务。
+\end_layout
+
+\end_body
+\end_document

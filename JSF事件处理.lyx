@@ -155,6 +155,10 @@ public void blah(ActionEvent e) { …}
 
 \end_layout
 
+\begin_layout Standard
+immediate="true"：阻止验证和输入元素的setter方法
+\end_layout
+
 \begin_layout Section
 值更改事件
 \end_layout
@@ -174,6 +178,18 @@ public void blah(ActionEvent e) { …}
 
 \begin_layout Standard
 语法：
+\end_layout
+
+\begin_layout Standard
+public void blah(ValueChangeEvent e) { …}
+\end_layout
+
+\begin_layout Standard
+这个事件中含有刚刚选定的值
+\end_layout
+
+\begin_layout Standard
+<h:selectOneRadio …onclick="submit()" valueChangeListener="#{bean.blah}"/>
 \end_layout
 
 \begin_layout Section

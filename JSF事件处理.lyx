@@ -216,5 +216,44 @@ com.corejsf.PhaseTracker
 还可以在faces中指定全局阶段监听器，可以指定任意多个，按照在配置文件中的指定顺序调用监听器
 \end_layout
 
+\begin_layout Standard
+例如：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<faces-config>
+\end_layout
+
+\begin_layout Plain Layout
+
+  <lifecycle>
+\end_layout
+
+\begin_layout Plain Layout
+
+    <phase-listener>com.corejsf.PhaseTracker</phase-listener>
+\end_layout
+
+\begin_layout Plain Layout
+
+  </lifecycle>
+\end_layout
+
+\begin_layout Plain Layout
+
+</faces-config>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

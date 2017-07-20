@@ -1,0 +1,109 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{multicol}
+\usepackage[style]{fncychap}
+\usepackage{forest}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+JSF生命周期的一些思考
+\end_layout
+
+\begin_layout Standard
+了解了生命周期的各个阶段以后也相应的有一些思考，仿佛通过生命周期使JSF一环扣一环的运行，整个系统的运行都是通过对生命周期各阶段请求的处理和事件的处理。我觉得这
+和信号的处理十分相似，客户端的请求作为输入，经过系统的处理最终呈现响应，而生命周期就充当了这个系统（只是个类比，因为生命周期也包含呈现响应阶段）。生命周期各阶段
+对请求的处理带来了许多方便，只需要遵守各阶段的规则，剩下的都交给系统处理。
+\end_layout
+
+\begin_layout Standard
+从查阅的资料来看，过去Web应用程序必需的大部分开发来处理客户端请求，动态环境还要求处理大量的参数，程序的开发十分复杂。然而生命周期可以用一种连贯的、基于事件的
+方式处理这项工作。而且不需要知道许多细节和幕后的工作也能轻松的构建应用程序
+\end_layout
+
+\end_body
+\end_document

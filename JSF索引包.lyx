@@ -1,0 +1,355 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{multicol}
+\usepackage[style]{fncychap}
+\usepackage{forest}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+LaTeX索引包介绍
+\end_layout
+
+\begin_layout Section
+gloss
+\end_layout
+
+\begin_layout Standard
+使用该宏包可以在文稿尾部按照字母顺序创建术语表，它类似于用 BiBTeX 生成参考文献列表
+\end_layout
+
+\begin_layout Standard
+先要按格式要求编写术语库文件（.bib）
+\end_layout
+
+\begin_layout Standard
+然后使用命令
+\backslash
+printgloss(去掉后缀的文件名)调用术语文件
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "40text%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename imgs/术语库文件.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "40text%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename imgs/术语示例.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+MakeIndex
+\end_layout
+
+\begin_layout Standard
+MakeIndex 是可生成索引的标准 LaTeX 宏包，它能将指定的词汇以及出现在正文中的页码，按字母顺序列于指定位置。编写文档时, 它很容易生成索引。创建过
+程如下：
+\end_layout
+
+\begin_layout Itemize
+风格文件作为文档格式的选项由makeidx.sty来指定
+\end_layout
+
+\begin_layout Itemize
+导言部分用
+\backslash
+makeindex声明
+\end_layout
+
+\begin_layout Itemize
+指定被登记在文档中的文本项
+\end_layout
+
+\begin_layout Itemize
+在文档最后使用命令 
+\backslash
+printindex 生成索引。
+\end_layout
+
+\begin_layout Standard
+需要导入makeidx宏包，每一个
+\backslash
+index命令都会在idx文件中添加一个条目。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "40text%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename imgs/MakeIndex代码.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "40text%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename imgs/MakeIndex示例.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+nomencl
+\end_layout
+
+\begin_layout Standard
+在阅读科技书刊时，其中定理或公式由于所用的符号特殊，经常使人百思不得其解。 该宏包可以帮助作者创建术语表，它利用 Make Index 宏包功能，对文稿中专门注
+释的术语或特定符号，在指定的位置，按字母顺序，自动进行列表。例如：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "40text%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename imgs/nomencl代码.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "40text%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename imgs/nomencl示例.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -96,7 +96,7 @@ JSF - DataTable
 
 \begin_layout Standard
 在JavaServerFaces应用程序中，UIData组件支持绑定到数据对象的集合。JSF提供了一个名为DataTable的丰富控件来呈现和格式化html表。
-DataTable可以遍历一组或多个值来显示数据。DataTable提供了以简单的方式修改其数据的属性。
+DataTable可以遍历一组或多个值来显示数据。DataTable提供了简单的方式修改其数据的属性。
 \end_layout
 
 \begin_layout Standard
@@ -104,23 +104,27 @@ DataTable可以遍历一组或多个值来显示数据。DataTable提供了以�
 \end_layout
 
 \begin_layout Standard
-显示DataTable:如何显示一个dataTable
+显示DataTable:显示一个dataTable
 \end_layout
 
 \begin_layout Standard
-添加数据:如何在dataTable中添加新行
+添加数据:在dataTable中添加新行
 \end_layout
 
 \begin_layout Standard
-编辑数据:如何编辑dataTable中的一行
+编辑数据:编辑dataTable中的一行
 \end_layout
 
 \begin_layout Standard
-删除数据:如何删除dataTable中的一行
+删除数据:删除dataTable中的一行
 \end_layout
 
 \begin_layout Standard
 使用DataModel:使用DataModel在dataTable中显示行号
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body

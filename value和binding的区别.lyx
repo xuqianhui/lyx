@@ -1,0 +1,167 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{multicol}
+\usepackage[style]{fncychap}
+\usepackage{forest}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+value和binding的区别
+\end_layout
+
+\begin_layout Standard
+value绑定：
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<h:inputText value="#{myBean.myProperty}/>"
+\end_layout
+
+\end_inset
+
+value属性表示所述部件的值。在浏览器中打开页面在文本框内看到的文本。
+\end_layout
+
+\begin_layout Standard
+binding绑定：
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<h:inputText binding="#{myBean.myProperty}/>"
+\end_layout
+
+\end_inset
+
+binding属性用于将组件绑定到一个bean属性。这意味着您可以将代码中的整个组件及其所有属性作为UIComponent对象进行访问。可以对组件进行大量的工作
+。可以动态的修改标签。例如可以在方法中修改它的风格，或者根据属性禁用组件。
+\end_layout
+
+\begin_layout Standard
+example:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public HtmlInputText getInputText() {     
+\end_layout
+
+\begin_layout Plain Layout
+
+  inputText.setStyle("color:red");     
+\end_layout
+
+\begin_layout Plain Layout
+
+  return inputText; 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+绑定组件时，可以按照JSF特定的术语进行操作，严重依赖于JSF API和内部构件。但是绑定组件也确实有一些其他用途，主要是想要对View进行重大动态重新定义时，
+再如panelGrid可以绑定，但是没有值。
+\end_layout
+
+\end_body
+\end_document

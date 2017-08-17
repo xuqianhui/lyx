@@ -135,17 +135,17 @@ status open
 
 \begin_layout Plain Layout
 
-public HtmlInputText getInputText() {     
+public HtmlInputText getInputContents() {     
 \end_layout
 
 \begin_layout Plain Layout
 
-  inputText.setStyle("color:red");     
+  inputContents.setStyle("color:red");     
 \end_layout
 
 \begin_layout Plain Layout
 
-  return inputText; 
+  return inputContents; 
 \end_layout
 
 \begin_layout Plain Layout

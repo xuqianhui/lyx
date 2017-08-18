@@ -102,6 +102,11 @@
 实现Converter类
 \end_layout
 
+\begin_layout Standard
+所有定制转换器都必须实现Converter接口。这个实现至少必须定义如何在转换模型中描述的数据的两个视图之间双向转换数据。要定义如何将数据从演示视图转换为模型视
+图，Converter必须从Converter接口实现getAsObject（FacesContext，UIComponent，String）方法.
+\end_layout
+
 \begin_layout Section
 注册Converter
 \end_layout

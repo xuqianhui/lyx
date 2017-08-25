@@ -1,0 +1,150 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{multicol}
+\usepackage[style]{fncychap}
+\usepackage{forest}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Servlet生命周期
+\end_layout
+
+\begin_layout Standard
+之前看JSF生命周期时，JSF是使用一个控制器servlet来处理请求,然后执行JSF生命周期，学java时servlet是怎么处理请求的，今天得空又恰巧看到，
+借官网上内容整理下
+\end_layout
+
+\begin_layout Section
+Servlet
+\end_layout
+
+\begin_layout Standard
+servlet是一种Java编程语言类，用于扩展通过请求 - 响应编程模型访问的托管应用程序的服务器的功能。虽然servlet可以响应任何类型的请求，但它们通常
+用于扩展由Web服务器托管的应用程序。对于这样的应用程序，Java Servlet技术定义了HTTP特定的servlet类。
+\end_layout
+
+\begin_layout Standard
+javax.servlet和javax.servlet.http提供了编写servlet的接口和类。所有servlet都必须实现Servlet接口，它定义了生命周期方
+法。实现通用服务时，可以使用或扩展Java Servlet API提供的GenericServlet类。HttpServlet类提供了一些方法，如的doGet和
+doPost方法，用于处理特定的HTTP服务。
+\end_layout
+
+\begin_layout Section
+生命周期
+\end_layout
+
+\begin_layout Standard
+servlet的生命周期由已部署servlet的容器​​控制。当请求映射到servlet时，容器将执行以下步骤。
+\end_layout
+
+\begin_layout Itemize
+如果servlet的实例不存在，则该Web容器
+\begin_inset Newline newline
+\end_inset
+
+加载servlet类。
+\begin_inset Newline newline
+\end_inset
+
+创建一个servlet类的实例。
+\begin_inset Newline newline
+\end_inset
+
+通过调用init方法初始化servlet实例。
+\end_layout
+
+\begin_layout Itemize
+调用服务方法，传递请求和响应对象。
+\end_layout
+
+\begin_layout Standard
+如果需要删除servlet，容器通过调用servlet的destroy方法来最终确定servlet 。
+\end_layout
+
+\end_body
+\end_document

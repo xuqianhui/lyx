@@ -124,17 +124,23 @@ servlet的生命周期由已部署servlet的容器控制。当请求映射到ser
 
 \begin_layout Itemize
 如果servlet的实例不存在，则该Web容器
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Enumerate
 加载servlet类。
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Enumerate
 创建一个servlet类的实例。
 \begin_inset Newline newline
 \end_inset
 
+使用@WebServlet注释来定义Web应用程序中的一个servlet组件。此注释在一个类上指定，并包含有关正在声明的servlet的元数据。注释的servl
+et必须至少指定一个URL模式。这可以通过在注释上使用urlPatterns或value属性来完成。所有其他属性都是可选的，具有默认设置。当注释上唯一的属性是U
+RL模式时，使用value属性; 否则在使用其他属性时使用urlPatterns属性。
+\end_layout
+
+\begin_layout Enumerate
 通过调用init方法初始化servlet实例。
 \end_layout
 

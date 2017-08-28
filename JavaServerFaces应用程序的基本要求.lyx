@@ -1,0 +1,283 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{multicol}
+\usepackage[style]{fncychap}
+\usepackage{forest}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+JavaServerFaces应用程序的基本要求
+\end_layout
+
+\begin_layout Standard
+除了配置应用程序之外，还必须满足JavaServer Faces应用程序的其他要求，包括正确打包所有必需的文件并提供部署描述文件。
+\end_layout
+
+\begin_layout Standard
+JavaServer Faces应用程序可以打包在WAR文件中，这些文件在不同容器之间执行的特定要求。JavaServer Faces应用程序的WAR文件必须包
+含以下内容：
+\end_layout
+
+\begin_layout Itemize
+web.xml文件来配置Web应用程序所需的资源。
+\end_layout
+
+\begin_layout Itemize
+一组特定的包含必需类的JAR文件
+\end_layout
+
+\begin_layout Itemize
+一组应用程序类，JavaServer Faces页面和其他所需的资源，如图像文件
+\end_layout
+
+\begin_layout Standard
+WAR文件还可以包含：
+\end_layout
+
+\begin_layout Itemize
+应用程序配置资源文件，用于配置应用程序资源
+\end_layout
+
+\begin_layout Itemize
+一组标签库文件
+\end_layout
+
+\begin_layout Standard
+在web.xml中的文件，集合的JAR文件和应用程序文件集必须包含在WEB-INF WAR文件的目录下
+\end_layout
+
+\begin_layout Section*
+web.xml
+\end_layout
+
+\begin_layout Standard
+JavaServer Faces应用程序的web.xml文件必须指定某些配置，包括以下内容：
+\end_layout
+
+\begin_layout Itemize
+用于处理JavaServer Faces请求的servlet
+\end_layout
+
+\begin_layout Itemize
+处理servlet的servlet映射
+\end_layout
+
+\begin_layout Itemize
+配置资源文件的路径（如果存在）并且不位于默认位置
+\end_layout
+
+\begin_layout Standard
+还可以包括其他可选配置，例如：
+\end_layout
+
+\begin_layout Itemize
+指定组件状态的保存位置
+\end_layout
+
+\begin_layout Itemize
+加密状态保存在客户端
+\end_layout
+
+\begin_layout Itemize
+压缩状态保存在客户端
+\end_layout
+
+\begin_layout Itemize
+限制对包含JavaServer Faces标签的页面的访问
+\end_layout
+
+\begin_layout Itemize
+打开XML验证
+\end_layout
+
+\begin_layout Itemize
+指定项目阶段
+\end_layout
+
+\begin_layout Itemize
+验证自定义对象
+\end_layout
+
+\begin_layout Section*
+处理生命周期的Servlet
+\end_layout
+
+\begin_layout Standard
+在JavaServer Faces应用程序可以启动其第一个网页之前，Web容器必须调用FacesServlet实例才能启动应用程序生命周期过程。引用先前保存的J
+avaServer Faces组件的所有应用程序请求都必须通过javax.faces.webapp.FacesServlet。一个FacesServlet的实例管理W
+eb应用程序，请求处理生命周期，并初始化所需资源。它的默认配置为：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<servlet>         
+\end_layout
+
+\begin_layout Plain Layout
+
+  <servlet-name>FacesServlet</servlet-name>         
+\end_layout
+
+\begin_layout Plain Layout
+
+  <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>         
+\end_layout
+
+\begin_layout Plain Layout
+
+</servlet>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+我们需要提供映射配置以确保调用FacesServlet实例。映射到FacesServlet可以是前缀映射，如：/faces/*,*.xhtml该映射用于将页面标识
+为具有JavaServer Faces内容。因此，应用程序的第一页的URL必须包含URL模式映射。例如：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<servlet-mapping>     
+\end_layout
+
+\begin_layout Plain Layout
+
+  <servlet-name>Faces Servlet</servlet-name>     
+\end_layout
+
+\begin_layout Plain Layout
+
+  <url-pattern>*.xhtml</url-pattern> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</servlet-mapping> 
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+<welcome-file-list>     
+\end_layout
+
+\begin_layout Plain Layout
+
+  <welcome-file>index.xhtml</welcome-file> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</welcome-file-list>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

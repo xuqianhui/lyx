@@ -279,5 +279,30 @@ status open
 
 \end_layout
 
+\begin_layout Section*
+指定应用程序配置资源文件的路径
+\end_layout
+
+\begin_layout Standard
+应用程序可以具有多个应用程序配置资源文件。如果这些文件不位于默认情况下执行搜索的目录或文件未命名为faces-config.xml，则需要指定这些文件的路径。
+\end_layout
+
+\begin_layout Standard
+JSF通过查找以下内容找到配置文件：
+\end_layout
+
+\begin_layout Standard
+在应用程序的/ WEB-INF /目录中名为faces-config.xml的资源。简单的Web应用程序使其配置文件以这种方式可用。
+\end_layout
+
+\begin_layout Standard
+在Web应用程序/ WEB-INF / lib /目录和父类加载器中的任何JAR文件中名为/META-INF/faces-config.xml的资源。该方法对于包
+含一些组件和渲染器的打包库是实用的。任何名称以faces-config.xml结尾的文件也被认为是配置资源
+\end_layout
+
+\begin_layout Standard
+web.xml文件中指定一个或多个（逗号分隔）路径到Web应用程序的多个配置文件。
+\end_layout
+
 \end_body
 \end_document

@@ -280,7 +280,7 @@ status open
 \end_layout
 
 \begin_layout Section*
-指定应用程序配置资源文件的路径
+指定配置资源文件路径及加载顺序
 \end_layout
 
 \begin_layout Standard
@@ -291,17 +291,131 @@ status open
 JSF通过查找以下内容找到配置文件：
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 在应用程序的/ WEB-INF /目录中名为faces-config.xml的资源。简单的Web应用程序使其配置文件以这种方式可用。
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 在Web应用程序/ WEB-INF / lib /目录和父类加载器中的任何JAR文件中名为/META-INF/faces-config.xml的资源。该方法对于包
 含一些组件和渲染器的打包库是实用的。任何名称以faces-config.xml结尾的文件也被认为是配置资源
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 web.xml文件中指定一个或多个（逗号分隔）路径到Web应用程序的多个配置文件。
+\end_layout
+
+\begin_layout Standard
+由于JavaServer Faces技术允许使用存储在不同位置的多个应用程序配置资源文件，所以在某些情况下（例如，在使用应用程序级对象时），实现它们加载的顺序变
+得很重要。可以通过ordering及其子元素来配置，应用程序配置资源文件的排序可以是绝对的或相对的。绝对的通过absolute-ordering元素来配置，用户
+指定应用程序配置资源文件被加载的顺序，例如：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<faces-config>     
+\end_layout
+
+\begin_layout Plain Layout
+
+  <name>myJSF</name>     
+\end_layout
+
+\begin_layout Plain Layout
+
+  <absolute-ordering>         
+\end_layout
+
+\begin_layout Plain Layout
+
+    <name>configA</name>         
+\end_layout
+
+\begin_layout Plain Layout
+
+    <name>configB</name>         
+\end_layout
+
+\begin_layout Plain Layout
+
+    <name>configC</name>     
+\end_layout
+
+\begin_layout Plain Layout
+
+  </absolute-ordering> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</faces-config>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+相对顺序通过定义排序元素及其子元素之前和之后排序，通过相对排序，通过考虑来自不同文件的排序条目来计算要加载应用程序配置资源文件的顺序，例如：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<faces-config>     
+\end_layout
+
+\begin_layout Plain Layout
+
+  <name>config-A</name>     
+\end_layout
+
+\begin_layout Plain Layout
+
+  <ordering>         
+\end_layout
+
+\begin_layout Plain Layout
+
+    <before>             
+\end_layout
+
+\begin_layout Plain Layout
+
+      <name>config-B</name>         
+\end_layout
+
+\begin_layout Plain Layout
+
+    </before>     
+\end_layout
+
+\begin_layout Plain Layout
+
+  </ordering> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</faces-config>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+如果一个排序元素不存在于应用程序配置文件中，则该文件将在包含排序元素的所有文件之后加载。
 \end_layout
 
 \end_body

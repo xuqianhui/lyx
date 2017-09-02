@@ -98,5 +98,33 @@
 组件类定义UI组件的状态和行为。状态信息包括组件的类型，标识符和本地值。组件类定义的行为包括以下内容：
 \end_layout
 
+\begin_layout Itemize
+解码（将请求参数转换为组件的本地值）
+\end_layout
+
+\begin_layout Itemize
+编码（将本地值转换为相应的标记）
+\end_layout
+
+\begin_layout Itemize
+保存组件的状态
+\end_layout
+
+\begin_layout Itemize
+使用本地值更新bean值
+\end_layout
+
+\begin_layout Itemize
+处理本地值的验证
+\end_layout
+
+\begin_layout Itemize
+排队消息
+\end_layout
+
+\begin_layout Standard
+该javax.faces.component.UIComponentBase类定义了组件类的默认行为。代表标准组件的所有类从UIComponentBase扩展。
+\end_layout
+
 \end_body
 \end_document

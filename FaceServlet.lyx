@@ -1,0 +1,294 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{multicol}
+\usepackage[style]{fncychap}
+\usepackage{forest}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+FacesServlet解析
+\end_layout
+
+\begin_layout Standard
+FacesServlet作为前端控制器，每一个JSF请求都要通过FacesServlet，然后再到其他阶段。在头部注释中说的很明白，管理请求的处理周期。它声明的
+变量如下：
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public static final String CONFIG_FILES_ATTR = 
+\end_layout
+
+\begin_layout Plain Layout
+
+"javax.faces.CONFIG_FILES"; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+public static final String LIFECYCLE_ID_ATTR = 
+\end_layout
+
+\begin_layout Plain Layout
+
+"javax.faces.LIFECYCLE_ID"; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+private static final Logger LOGGER = 
+\end_layout
+
+\begin_layout Plain Layout
+
+Logger.getLogger("javax.faces.webapp", "javax.faces.LogStrings"); 
+\end_layout
+
+\begin_layout Plain Layout
+
+private FacesContextFactory facesContextFactory = null; 
+\end_layout
+
+\begin_layout Plain Layout
+
+private Lifecycle lifecycle = null; 
+\end_layout
+
+\begin_layout Plain Layout
+
+private ServletConfig servletConfig = null;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这些都是JSF的全局变量，最重要的部分主要涉及到FacesContextFactory、LifeCycle和ServletConfig对象。
+\end_layout
+
+\begin_layout Section
+FacesContextFactory
+\end_layout
+
+\begin_layout Standard
+FacesContextFactory是一个实现了工厂模式的抽象类，用来创建和返回一个FacesContext实例，并且把这个实例初始化，以便处理request
+和response对象。这个FacesContext对象，是始终贯彻在JSF中的一个对象。FacesContextFactory对象提供了下面的方法来产生Fac
+esContext对象。
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public abstract FacesContext getFacesContext 
+\end_layout
+
+\begin_layout Plain Layout
+
+(Object context, Object request, 
+\end_layout
+
+\begin_layout Plain Layout
+
+Object response, Lifecycle lifecycle) 
+\end_layout
+
+\begin_layout Plain Layout
+
+throws FacesException;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+FacesContextFactory会为每一个Request请求返回一个FacesContext对象。通过FacesContext.getCurrentInst
+ance可以返回当前线程上的实例，release方法，这个方法负责释放FacesContext的资源。那么FacesServlet中是如何调用FacesCont
+extFactory来产生一个FacesContext对象。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename imgs/FacesServlet-1.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+不太确定LifecycleFactory的作用，位置对不对，看过这部分以后回来再改
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+首先要通过FacesServlet的init方法来产生一个FacesContextFactory对象：
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "code/init.java"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+在这个init方法中,FacesServlet通过FactoryFinder对象来创建一个具体的Factory对象。同时这个FactoryFinder还可以创建
+其他的工厂类，所以通过FactoryFinder.FACES_CONTEXT_FACTORY参数指明是创建FacesContextFactory。
+\end_layout
+
+\begin_layout Itemize
+FactoryFinder查找和创建JSF实现中的各个工厂类。通过实现标准的发现算法，可以查找所有在JSF API中指定的factory对象。算法如下：
+\end_layout
+
+\begin_layout Itemize
+如果web应用的WEB-INF目录下存在JSF的configuration 文件，并且含有factory节点，而且这个factory节点中含有正在查找的fact
+ory对象的类名称，那么就加载这个类。 
+\end_layout
+
+\begin_layout Itemize
+如果在ServletContext的初始化参数中有javax.faces.CONFIG_FILES参数，并且这个参数值指定的配置文件中有factory节点，并且这个
+节点中含有目前正在查找的factory类名，那么就加载这个对象。 
+\end_layout
+
+\begin_layout Itemize
+如果在ServletContext的资源目录下的Jar包中的 META-INF目录下含有JSF配置文件，并且正在查找的factory类名存在于factory节点
+中，则加载这个类。最晚加载的类优先。
+\end_layout
+
+\begin_layout Itemize
+如果META-INF/service/目录下有当前正在查找的类名称，会加载之。 
+\end_layout
+
+\begin_layout Itemize
+如果上面的规则都没有匹配，则会使用JSF实现中的特定类。
+\end_layout
+
+\begin_layout Section
+LifeCycle
+\end_layout
+
+\begin_layout Standard
+下面的事情就是LifecycleFactory的加载，LifecycleFactory对象加载后，会查找JSF中是否配置了javax.faces.LIFECYCLE
+_ID参数，根据这个参数加载lifecycleId。通过加载不同实现的LifecycleFactory对象，就可以允许加载不同的Lifecycle对象，这对于扩
+展JSF的功能是非常重要的， 当没有显示表明lifecycleId时，lifecycleFactory就会加载默认的lifecycleId，并根据lifecyc
+leId加载Lifecycle对象 Lifecycle类负责JSF请求处理的全过程，主要是通过执行其中的execute方法和render方法实现的。
+\end_layout
+
+\begin_layout Standard
+这一部分还不太懂
+\end_layout
+
+\end_body
+\end_document

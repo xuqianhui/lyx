@@ -1,0 +1,268 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ctex-article
+\begin_preamble
+\usepackage {layout}%输出页面布局
+\usepackage {menukeys}
+\usepackage {footnote} 
+\makesavenoteenv {tabular}
+\usepackage[bottom]{footmisc}
+\usepackage {placeins}
+\usepackage{scrextend}%labeling环境
+\usepackage[inline]{enumitem}%内联列表
+\usepackage{xcolor}
+\usepackage{tasks}%水平列表
+\usepackage{lettrine}%首字浮沉
+\usepackage{alltt}%逐字文本
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{multicol}
+\usepackage[style]{fncychap}
+\usepackage{forest}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+处理变长数据的几种选择：
+\end_layout
+
+\begin_layout Itemize
+从bean属性生成HTML
+\end_layout
+
+\begin_layout Itemize
+使用类似h:dataTable的内置组件
+\end_layout
+
+\begin_layout Itemize
+自定义复合组件
+\end_layout
+
+\begin_layout Itemize
+使用ui:repeat循环重复
+\end_layout
+
+\begin_layout Section
+使用h:dataTable包含：
+\end_layout
+
+\begin_layout Standard
+基础：h:dataTable和h:Column
+\end_layout
+
+\begin_layout Standard
+标题（Headings）
+\end_layout
+
+\begin_layout Standard
+样式表
+\end_layout
+
+\begin_layout Standard
+支持 Ajax 的表
+\end_layout
+
+\begin_layout Standard
+具有条件值的表
+\end_layout
+
+\begin_layout Section
+概述：
+\end_layout
+
+\begin_layout Subsection
+使用h:dataTable的原因
+\end_layout
+
+\begin_layout Standard
+结果页面简单并且是面向HTML，允许开发人员构建GUI
+\end_layout
+
+\begin_layout Standard
+操作控制器生成的数据长度可以更改
+\end_layout
+
+\begin_layout Standard
+在不依赖JSP脚本和显式Java 循环的情况下生成输出
+\end_layout
+
+\begin_layout Subsection
+构建用于处理可变长度数据的JSF
+\end_layout
+
+\begin_layout Standard
+bean：通过getter方法从集合中取出字符串或者十分简单的HTML
+\end_layout
+
+\begin_layout Standard
+h:dataTable：从集合中生成表的内置组件
+\end_layout
+
+\begin_layout Standard
+自定义的复合组件：创建自己的组件, 从集合中生成某些 HTML 构造（例如：<ul> list）
+\end_layout
+
+\begin_layout Standard
+ui:repeat：在结果页中执行显式循环
+\end_layout
+
+\begin_layout Subsection
+选择哪一种方式：
+\end_layout
+
+\begin_layout Standard
+通常：选择网页作者足够控制下最简单的方式
+\end_layout
+
+\begin_layout Standard
+要从集合中生成一个表，集合中每个条目相对一致的对应于一个表行的时候最好选择h:dataTable
+\end_layout
+
+\begin_layout Subsection
+数据
+\end_layout
+
+\begin_layout Standard
+通常：数据是在操作控制器调用的业务逻辑中生成的，例如：在一个表单中收集银行客户的ID月份等信息，按钮调用findChanges，findChanges发现银行账
+户在当月发生变化（存款和取款），然后放入一个数组或者列表
+\end_layout
+
+\begin_layout Standard
+这里，将硬编码来简化数据：创建一个返回固定集合的方法的managed bean
+\end_layout
+
+\begin_layout Section
+基础
+\end_layout
+
+\begin_layout Subsection
+最简单的语法：
+\end_layout
+
+\begin_layout Standard
+属性：var, value, border 
+\end_layout
+
+\begin_layout Standard
+嵌套元素：h:column
+\end_layout
+
+\begin_layout Standard
+例如：
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<h:dataTable var="someVar" value="#{bean.someCollection}"
+\end_layout
+
+\begin_layout Plain Layout
+
+             border="…"> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h:column>#{someVar.property1}</h:column>
+\end_layout
+
+\begin_layout Plain Layout
+
+  <h:column>#{someVar.property2} </h:column>
+\end_layout
+
+\begin_layout Plain Layout
+
+  … 
+\end_layout
+
+\begin_layout Plain Layout
+
+</h:dataTable>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+value的合法类型：Array, List, Collection, ResultSet, Result, DataModel
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document
